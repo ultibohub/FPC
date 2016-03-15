@@ -103,7 +103,8 @@ begin
    ct_rpia,
    ct_rpib,
    ct_rpizero,
-   ct_rpi2b:
+   ct_rpi2b,
+   ct_rpi3b:
     begin
      prtobj:=embedded_controllers[current_settings.controllertype].controllerunitstr;
     end;
@@ -269,8 +270,9 @@ begin
               Add('ENTRY(_START)');
             end;
         end;
-      { Raspberry Pi2}
-      ct_rpi2b:
+      { Raspberry Pi2 / Raspberry Pi3}
+      ct_rpi2b,
+      ct_rpi3b:
         begin
          with embedded_controllers[current_settings.controllertype] do
           with linkres do
@@ -288,7 +290,8 @@ begin
    ct_rpia,
    ct_rpib,
    ct_rpizero,
-   ct_rpi2b:
+   ct_rpi2b,
+   ct_rpi3b:
     begin
      with linkres do
       begin
@@ -404,7 +407,8 @@ begin
         success:=DoExec(FindUtil(utilsprefix+'objcopy'),'-O binary '+
           ChangeFileExt(current_module.exefilename,'.elf')+' kernel.img',true,false);
        end;
-      ct_rpi2b:begin
+      ct_rpi2b,
+      ct_rpi3b:begin
         success:=DoExec(FindUtil(utilsprefix+'objcopy'),'-O binary '+
           ChangeFileExt(current_module.exefilename,'.elf')+' kernel7.img',true,false);
        end;

@@ -474,7 +474,10 @@ Type
       ct_rpizero,
       
       { Raspberry Pi2}
-      ct_rpi2b
+      ct_rpi2b,
+
+      { Raspberry Pi3 (32 bit mode)}
+      ct_rpi3b
       
      );
 
@@ -983,7 +986,10 @@ Const
       (controllertypestr:'RPIZERO';	controllerunitstr:'BOOTRPI';	cputype:cpu_armv6;   fputype:fpu_vfpv2;   flashbase:$00000000;	flashsize:$00000000;	srambase:$00008000;	sramsize:$20000000),
       
       { Raspberry Pi2}
-      (controllertypestr:'RPI2B';	controllerunitstr:'BOOTRPI2';	cputype:cpu_armv7a;  fputype:fpu_vfpv3;   flashbase:$00000000;	flashsize:$00000000;	srambase:$00008000;	sramsize:$40000000)
+      (controllertypestr:'RPI2B';	controllerunitstr:'BOOTRPI2';	cputype:cpu_armv7a;  fputype:fpu_vfpv3;   flashbase:$00000000;	flashsize:$00000000;	srambase:$00008000;	sramsize:$40000000),
+
+      { Raspberry Pi3}
+      (controllertypestr:'RPI3B';	controllerunitstr:'BOOTRPI3';	cputype:cpu_armv7a;  fputype:fpu_vfpv3;   flashbase:$00000000;	flashsize:$00000000;	srambase:$00008000;	sramsize:$40000000)
       
     );
 
