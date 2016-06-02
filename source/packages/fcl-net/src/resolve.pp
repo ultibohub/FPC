@@ -522,11 +522,18 @@ Function TNetResolver.AddressLookup (Const Address: TNetAddr) : boolean;
 
 Var
   FNetEntry : PNetEntry;
-
+  {$ifdef ultibo}
+  FNetAddr : TNetAddr;
+  {$endif}
 begin
   ClearData;
 {$ifndef win32}
+ {$ifdef ultibo}
+  FNetAddr:=HostToNet(Address);
+  FNetEntry:=GetNetByAddr(@FNetAddr,SizeOf(TNetAddr),AF_INET);
+ {$else}
   FNetEntry:=GetNetByAddr(Longint(HostToNet(Address)),AF_INET);
+ {$endif}
 {$else}
   FNetEntry:=Nil;
 {$endif}

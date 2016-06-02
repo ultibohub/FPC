@@ -27,8 +27,8 @@ begin
     P.HomepageURL := 'www.freepascal.org';
     P.Email := '';
     P.Description := 'BZip2 decompression unit.';
-    P.NeedLibC:= true;
-    P.OSes := P.OSes - [embedded,nativent,msdos,win16,ultibo];
+    P.NeedLibC:= false; //true;
+    P.OSes := P.OSes - [embedded,nativent,msdos,win16];
 
     P.SourcePath.Add('src');
     P.IncludePath.Add('src');

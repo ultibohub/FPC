@@ -282,7 +282,9 @@ Function DecodeURLElement(Const S : String) : String;
 
 implementation
 {$if not defined(hasamiga)}
+{$if not defined(ultibo)}
 uses sslsockets;
+{$endif}
 {$endif}
 
 resourcestring
@@ -434,9 +436,11 @@ begin
     FOnGetSocketHandler(Self,UseSSL,Result);
   if (Result=Nil) then
   {$if not defined(HASAMIGA)}
+  {$if not defined(ultibo)}
     If UseSSL then
       Result:=TSSLSocketHandler.Create
     else
+  {$endif}  
   {$endif}  
       Result:=TSocketHandler.Create;
 end;

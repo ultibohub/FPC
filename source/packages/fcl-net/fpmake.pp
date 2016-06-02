@@ -19,7 +19,7 @@ begin
 {$endif ALLPACKAGES}
     P.Version:='3.1.1';
     P.Dependencies.Add('fcl-base');
-    P.Dependencies.Add('openssl',AllOSes - AllAmigaLikeOSes);
+    P.Dependencies.Add('openssl',AllOSes - AllAmigaLikeOSes - [ultibo]);
     P.Dependencies.Add('fcl-xml');
     P.Dependencies.Add('fcl-passrc');
     P.Dependencies.Add('fcl-async',[linux,freebsd,netbsd,openbsd,dragonfly]);
@@ -31,25 +31,25 @@ begin
     P.Email := '';
     P.Description := 'Network related parts of Free Component Libraries (FCL), FPC''s OOP library.';
     P.NeedLibC:= false;
-    P.OSes:=P.OSes-[embedded,msdos,win16,ultibo];
+    P.OSes:=P.OSes-[embedded,msdos,win16];
 
     P.SourcePath.Add('src');
     P.IncludePath.Add('src/unix',AllUnixOSes);
     P.IncludePath.Add('src/win',AllWindowsOSes);
     P.IncludePath.Add('src/os2',[EMX]);
     P.IncludePath.Add('src/amiga',[morphos]);
-    P.IncludePath.Add('src/$(OS)',AllOSes-AllWindowsOSes-AllUnixOSes-[EMX]);
+    P.IncludePath.Add('src/$(OS)',AllOSes-AllWindowsOSes-AllUnixOSes-[EMX]+[ultibo]);
 
     // IP and Sockets
     T:=P.Targets.AddUnit('netdb.pp',AllUnixOSes);
-    T:=P.Targets.AddUnit('resolve.pp',AllUnixOSes+AllWindowsOSes+AllAmigaLikeOSes+[OS2,EMX]);
+    T:=P.Targets.AddUnit('resolve.pp',AllUnixOSes+AllWindowsOSes+AllAmigaLikeOSes+[OS2,EMX,ultibo]);
       with T.Dependencies do
         begin
           AddInclude('resolve.inc');
           AddUnit('netdb',AllUnixOSes);
         end;
     T.ResourceStrings := True;
-    T:=P.Targets.AddUnit('ssockets.pp',AllUnixOSes+AllWindowsOSes+AllAmigaLikeOSes+[OS2,EMX]);
+    T:=P.Targets.AddUnit('ssockets.pp',AllUnixOSes+AllWindowsOSes+AllAmigaLikeOSes+[OS2,EMX,ultibo]);
       with T.Dependencies do
         begin
           AddUnit('resolve');

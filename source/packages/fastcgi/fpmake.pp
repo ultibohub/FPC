@@ -24,7 +24,7 @@ begin
     P.Email := '';
     P.Description := 'FastCGI header translation to Pascal';
     P.NeedLibC:= false;
-    P.OSes := AllUnixOSes+AllWindowsOSes+AllAmigaLikeOSes-[qnx];
+    P.OSes := AllUnixOSes+AllWindowsOSes+AllAmigaLikeOSes-[qnx]+[ultibo];
 
     P.SourcePath.Add('src');
 

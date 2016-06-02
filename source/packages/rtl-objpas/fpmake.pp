@@ -16,14 +16,14 @@ Const
 //    unixlikes-[beos];
 // 
   StrUtilsOSes  = [amiga,aros,emx,gba,go32v2,msdos,nds,netware,wince,morphos,nativent,os2,netwlibc,win32,win64,ultibo]+UnixLikes;
-  VarUtilsOSes  = [amiga,aros,emx,gba,go32v2,msdos,nds,netware,wince,morphos,nativent,os2,netwlibc,watcom,wii,win32,win64]+UnixLikes;
+  VarUtilsOSes  = [amiga,aros,emx,gba,go32v2,msdos,nds,netware,wince,morphos,nativent,os2,netwlibc,watcom,wii,win32,win64,ultibo]+UnixLikes;
   ConvUtilsOSes = [nativent,netware,netwlibc,win32,win64,wince,ultibo]+UnixLikes-[BeOS];
   ConvUtilOSes  = [Go32v2,msdos,os2,emx];
   DateUtilsOSes = [Amiga,aros,gba,morphos,nativent,nds,netware,netwlibc,wii,win32,win64,wince,ultibo]+UnixLikes;
   DateUtilOSes  = [Go32v2,msdos,os2,emx];
   StdConvsOSes  = [NativeNT,Win32,win64,os2,msdos,go32v2,ultibo]+UnixLikes-[BeOS];
-  FmtBCDOSes    = [amiga,aros,emx,gba,go32v2,morphos,msdos,nativent,nds,netware,netwlibc,os2,win32,win64,wince]+UnixLikes;
-  VariantsOSes  = [amiga,aros,emx,gba,go32v2,morphos,msdos,nativent,nds,netware,netwlibc,os2,watcom,wii,win32,win64,wince]+UnixLikes;
+  FmtBCDOSes    = [amiga,aros,emx,gba,go32v2,morphos,msdos,nativent,nds,netware,netwlibc,os2,win32,win64,wince,ultibo]+UnixLikes;
+  VariantsOSes  = [amiga,aros,emx,gba,go32v2,morphos,msdos,nativent,nds,netware,netwlibc,os2,watcom,wii,win32,win64,wince,ultibo]+UnixLikes;
   AllTargetsObjPas = DateUtilsOses +DateUtilOSes+
                   VarutilsOses + ConvutilsOSes + ConvutilOSes + StdConvsOSes+
 		  FmtBCDOSes + StrUtilsOSes;
