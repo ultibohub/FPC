@@ -97,7 +97,7 @@ Var
 begin
   WriteResponseFile:=False;
   linklibc:=(SharedLibFiles.Find('c')<>nil);
-{$if defined(ARM) or defined(i386)}
+{$if defined(ARM) or defined(i386) or defined(AARCH64)}
   {$ifdef ARM}
   case current_settings.controllertype of
    ct_rpia,
@@ -107,21 +107,29 @@ begin
    ct_rpi3b:
     begin
      prtobj:=embedded_controllers[current_settings.controllertype].controllerunitstr;
+     cprtobj:=embedded_controllers[current_settings.controllertype].controllerunitstr;
     end;
    else
     begin
      prtobj:='';
+     cprtobj:='';
     end;
   end; 
   {$endif ARM}
   {$ifdef i386}
   //To Do
   prtobj:='';
+  cprtobj:='';
   {$endif i386}
+  {$ifdef AARCH64}
+  //To Do
+  prtobj:='';
+  cprtobj:='';
+  {$endif AARCH64}
 {$else}
   prtobj:='prt0';
-{$endif}
   cprtobj:='cprt0';
+{$endif}
   if linklibc then
     prtobj:=cprtobj;
 
@@ -169,7 +177,7 @@ begin
   while not ObjectFiles.Empty do
    begin
     s:=ObjectFiles.GetFirst;
-    {$if defined(ARM) or defined(i386)}
+    {$if defined(ARM) or defined(i386) or defined(AARCH64)}
     if (s<>'') and (upper(s) <> upper(prtobject)) then
     {$else}
     if s<>'' then
@@ -330,10 +338,13 @@ begin
   end;  
 {$endif ARM}
  
-
 {$ifdef i386}
 //To Do
 {$endif i386}
+
+{$ifdef AARCH64}
+//To Do
+{$endif AARCH64}
 
   { Write and Close response }
   linkres.writetodisk;
@@ -417,6 +428,9 @@ begin
      {$ifdef i386}
      //To Do
      {$endif i386}
+     {$ifdef AARCH64}
+     //To Do
+     {$endif AARCH64}
     end;
 
   MakeExecutable:=success;   { otherwise a recursive call to link method }
@@ -594,5 +608,9 @@ initialization
   RegisterLinker(ld_ultibo,TLinkerUltibo);
   RegisterTarget(system_i386_ultibo_info);
 {$endif i386}
+
+{$ifdef AARCH64}
+//To Do
+{$endif AARCH64}
 
 end.
