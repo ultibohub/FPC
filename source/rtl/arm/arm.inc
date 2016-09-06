@@ -618,11 +618,13 @@ asm
   strex r2, r1, [r0]
   cmp r2, #0
   bne .Lloop
+{$ifdef ULTIBO}
 {$ifdef CPUARM_HAS_DMB}
   dmb
 {$else}
   mov r12, #0
   mcr p15, #0, r12, cr7, cr10, #5
+{$endif}
 {$endif}
   movs r0, r1
 {$ifdef CPUARM_HAS_BX}
@@ -715,11 +717,13 @@ asm
   strex r2, r1, [r0]
   cmp r2, #0
   bne .Lloop
+{$ifdef ULTIBO}
 {$ifdef CPUARM_HAS_DMB}
   dmb
 {$else}
   mov r12, #0
   mcr p15, #0, r12, cr7, cr10, #5
+{$endif}
 {$endif}
   mov r0, r1
 {$ifdef CPUARM_HAS_BX}
@@ -810,11 +814,13 @@ asm
   strex r3, r1, [r0]
   cmp r3, #0
   bne .Lloop
+{$ifdef ULTIBO}
 {$ifdef CPUARM_HAS_DMB}
   dmb
 {$else}
   mov r12, #0
   mcr p15, #0, r12, cr7, cr10, #5
+{$endif}
 {$endif}
   mov r0, r2
 {$ifdef CPUARM_HAS_BX}
@@ -905,11 +911,13 @@ asm
   strex r3, r12, [r0]
   cmp r3, #0
   bne .Lloop
+{$ifdef ULTIBO}
 {$ifdef CPUARM_HAS_DMB}
   dmb
 {$else}
   mov r12, #0
   mcr p15, #0, r12, cr7, cr10, #5
+{$endif}
 {$endif}
   mov  r0, r2
 {$ifdef CPUARM_HAS_BX}
@@ -1008,11 +1016,13 @@ asm
   strexeq  r12, r1, [r0]
   cmp      r12, #0
   bne      .Lloop
+{$ifdef ULTIBO}
 {$ifdef CPUARM_HAS_DMB}
   dmb
 {$else}
   mov r12, #0
   mcr p15, #0, r12, cr7, cr10, #5
+{$endif}
 {$endif}
   mov      r0, r3
 {$ifdef CPUARM_HAS_BX}
