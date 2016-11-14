@@ -57,6 +57,9 @@ unit StdDlg;
 {$ifdef OS_OS2}
   {$define HAS_DOS_DRIVES}
 {$endif}
+{$ifdef OS_ULTIBO}
+  {$define HAS_DOS_DRIVES}
+{$endif}
 
 {2.0 compatibility}
 {$ifdef VER2_0}
@@ -622,6 +625,9 @@ resourcestring  sChangeDirectory='Change Directory';
 {$ifdef OS_WINDOWS}
 {$define NetDrive}
 {$endif OS_WINDOWS}
+{$ifdef OS_ULTIBO}
+{$define NetDrive}
+{$endif OS_ULTIBO}
 
 procedure RemoveDoubleDirSep(var ExpPath : PathStr);
 var
@@ -2774,7 +2780,11 @@ begin
 {$ifdef OS_WINDOWS}
     IllegalChars := ';,=+<>|"[]'+DirSeparator;
 {$else not go32v2 and not OS_WINDOWS }
+{$ifdef OS_ULTIBO}
+    IllegalChars := ';,=+<>|"[]'+DirSeparator;
+{$else not go32v2 and not OS_WINDOWS ad not OS_ULTIBO}
     IllegalChars := ';,=+<>|"[] '+DirSeparator;
+{$endif not OS_ULTIBO}
 {$endif not OS_WINDOWS}
 {$endif not go32v2}
 {$else not PPC_FPC}

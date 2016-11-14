@@ -64,7 +64,7 @@ USES
      {$ENDIF}
    {$ENDIF}
    Dos,
-   Video,
+   {$IFDEF OS_ULTIBO}ConsoleVideo{$ELSE}Video{$ENDIF},
    FVCommon, {Memory,}                                { GFV standard units }
    Objects, Drivers, Views, Menus, HistList, Dialogs,
    msgbox, fvconsts;
@@ -357,7 +357,7 @@ CONST
                                 IMPLEMENTATION
 {<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>}
 
-uses    Mouse{,Resource};
+uses    {$IFDEF OS_ULTIBO}ConsoleMouse{$ELSE}Mouse{$ENDIF}{,Resource};
 
 resourcestring  sVideoFailed='Video initialization failed.';
                 sTypeExitOnReturn='Type EXIT to return...';
@@ -904,12 +904,12 @@ begin
    Warning: InitScreen calls DetectVideo which
     resets ScreenMode to old value, call it after
     video mode was changed instead of before }
-  Video.SetVideoMode(Mode);
+  {$IFDEF OS_ULTIBO}ConsoleVideo.{$ELSE}Video.{$ENDIF}SetVideoMode(Mode);
 
   { Update ScreenMode to new value }
   InitScreen;
-  ScreenWidth:=Video.ScreenWidth;
-  ScreenHeight:=Video.ScreenHeight;
+  ScreenWidth:={$IFDEF OS_ULTIBO}ConsoleVideo.{$ELSE}Video.{$ENDIF}ScreenWidth;
+  ScreenHeight:={$IFDEF OS_ULTIBO}ConsoleVideo.{$ELSE}Video.{$ENDIF}ScreenHeight;
   Buffer := Views.PVideoBuf(VideoBuf);
   R.Assign(0, 0, ScreenWidth, ScreenHeight);
   ChangeBounds(R);
@@ -1013,8 +1013,8 @@ BEGIN
    Inherited Init;                                            { Call ancestor }
    InitMsgBox;
    { init mouse and cursor }
-   Video.SetCursorType(crHidden);
-   Mouse.SetMouseXY(1,1);
+   {$IFDEF OS_ULTIBO}ConsoleVideo.{$ELSE}Video.{$ENDIF}SetCursorType(crHidden);
+   {$IFDEF OS_ULTIBO}ConsoleMouse.{$ELSE}Mouse.{$ENDIF}SetMouseXY(1,1);
 END;
 
 {--TApplication-------------------------------------------------------------}
@@ -1081,7 +1081,7 @@ BEGIN                                                 { Compatability only }
 {  InitDosMem;}
   drivers.initkeyboard;
   drivers.initvideo;
-  Video.SetCursorType(crHidden);
+  {$IFDEF OS_ULTIBO}ConsoleVideo.{$ELSE}Video.{$ENDIF}SetCursorType(crHidden);
   InitScreen;
   InitEvents;
   InitSysError;

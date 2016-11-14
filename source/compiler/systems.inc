@@ -174,7 +174,8 @@
              system_i8086_win16,        { 89 }
              system_arm_ultibo,         { 90 }
              system_i386_ultibo,        { 91 }
-             system_x86_64_ultibo       { 92 }
+             system_x86_64_ultibo,      { 92 }
+             system_aarch64_ultibo      { 93 }
              
        );
 

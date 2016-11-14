@@ -477,7 +477,10 @@ Type
       ct_rpi2b,
 
       { Raspberry Pi3 (32 bit mode)}
-      ct_rpi3b
+      ct_rpi3b,
+      
+      { QEMU VersatilePB}
+      ct_qemuvpb
       
      );
 
@@ -989,7 +992,10 @@ Const
       (controllertypestr:'RPI2B';	controllerunitstr:'BOOTRPI2';	cputype:cpu_armv7a;  fputype:fpu_vfpv3;   flashbase:$00000000;	flashsize:$00000000;	srambase:$00008000;	sramsize:$40000000),
 
       { Raspberry Pi3}
-      (controllertypestr:'RPI3B';	controllerunitstr:'BOOTRPI3';	cputype:cpu_armv7a;  fputype:fpu_vfpv3;   flashbase:$00000000;	flashsize:$00000000;	srambase:$00008000;	sramsize:$40000000)
+      (controllertypestr:'RPI3B';	controllerunitstr:'BOOTRPI3';	cputype:cpu_armv7a;  fputype:fpu_vfpv3;   flashbase:$00000000;	flashsize:$00000000;	srambase:$00008000;	sramsize:$40000000),
+
+      { QEMU VersatilePB}
+      (controllertypestr:'QEMUVPB';	controllerunitstr:'BOOTQEMUVPB';	cputype:cpu_armv7a;  fputype:fpu_vfpv3;   flashbase:$00000000;	flashsize:$00000000;	srambase:$00010000;	sramsize:$10000000)
       
     );
 

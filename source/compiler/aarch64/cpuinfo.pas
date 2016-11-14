@@ -45,7 +45,13 @@ Type
      );
 
    tcontrollertype =
-     (ct_none
+     (ct_none,
+     
+      { Raspberry Pi3 (64 bit mode)}
+      ct_rpi3b,
+      
+      { QEMU VersatilePB (64 bit mode)}
+      ct_qemuvpb
      );
 
    tcontrollerdatatype = record
@@ -58,7 +64,7 @@ Type
 Const
    { Is there support for dealing with multiple microcontrollers available }
    { for this platform? }
-   ControllerSupport = false; (* Not yet at least ;-) *)
+   ControllerSupport = true;
    {# Size of native extended floating point type }
    extended_size = 8;
    {# Size of a multimedia register               }
@@ -72,7 +78,15 @@ Const
     {$WARN 3177 OFF}
    embedded_controllers : array [tcontrollertype] of tcontrollerdatatype =
    (
-      (controllertypestr:''; controllerunitstr:''; cputype:cpu_none; fputype:fpu_none; flashbase:0; flashsize:0; srambase:0; sramsize:0));
+      (controllertypestr:''; controllerunitstr:''; cputype:cpu_none; fputype:fpu_none; flashbase:0; flashsize:0; srambase:0; sramsize:0),
+      
+      { Raspberry Pi3}
+      (controllertypestr:'RPI3B'; controllerunitstr:'BOOTRPI3'; cputype:cpu_armv8; fputype:fpu_vfp; flashbase:$00000000; flashsize:$00000000; srambase:$00008000; sramsize:$40000000),
+
+      { QEMU VersatilePB}
+      (controllertypestr:'QEMUVPB'; controllerunitstr:'BOOTQEMUVPB'; cputype:cpu_armv8; fputype:fpu_vfp; flashbase:$00000000; flashsize:$00000000; srambase:$00010000; sramsize:$10000000)
+      
+    );
    {$POP}
 
    { calling conventions supported by the code generator }

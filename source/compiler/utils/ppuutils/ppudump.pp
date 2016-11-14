@@ -175,7 +175,8 @@ const
   { 89 }  'Win16',
   { 90 }  'Ultibo-arm',
   { 91 }  'Ultibo-i386',        
-  { 92 }  'Ultibo-x86-64'       
+  { 92 }  'Ultibo-x86-64',
+  { 93 }  'Ultibo-AArch64'       
   );
 
 const

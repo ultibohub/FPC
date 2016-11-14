@@ -403,7 +403,7 @@ CONST
                                 IMPLEMENTATION
 {<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>}
 USES
-  Video;
+  {$IFDEF OS_ULTIBO}ConsoleVideo{$ELSE}Video{$ENDIF};
 
 CONST
   SubMenuChar : array[boolean] of char = ('>',#16);

@@ -41,6 +41,9 @@ implementation
     {$ifndef NOTARGETBSD}
       ,t_bsd
     {$endif}
+    {$ifndef NOTARGETULTIBO}
+      ,t_ultibo
+    {$endif}
 
 {**************************************
              Assemblers

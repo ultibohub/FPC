@@ -466,6 +466,14 @@ FOR FPC THESE ARE THE TRANSLATIONS
   {$ENDIF}
 {$ENDIF}
 
+{---------------------------------------------------------------------------}
+{  FPC ULTIBO COMPILER changes operating system - Updated 27Oct16 GW        }
+{---------------------------------------------------------------------------}
+{$IFDEF ULTIBO}
+  {$UNDEF OS_DOS}
+  {$DEFINE OS_ULTIBO}
+{$ENDIF}
+
 {$IFDEF OS_DOS}
   {$DEFINE NO_WINDOW}
 {$ENDIF}

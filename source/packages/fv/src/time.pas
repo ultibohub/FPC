@@ -192,6 +192,10 @@ PROCEDURE SecondsToTime (Sd: LongInt; Var Hour24, Minute, Second: Word);
   USES Dos;
 {$endif OS_AMIGA}
 
+{$ifdef OS_ULTIBO}
+  USES Dos;
+{$endif OS_ULTIBO}
+
 {***************************************************************************}
 {                            INTERFACE ROUTINES                             }
 {***************************************************************************}
@@ -335,6 +339,11 @@ BEGIN
  { probably could be implemented, but it's low pri... (KB) }
 END;
 {$ENDIF OS_AMIGA}
+{$IFDEF OS_ULTIBO}
+BEGIN
+  Dos.SetTime(Hour,Minute,Second,Sec100);
+END;
+{$ENDIF OS_ULTIBO}
 
 {---------------------------------------------------------------------------}
 {  GetTime -> Platforms DOS/DPMI/WIN/NT/OS2 - Updated 06Nov97 LdB           }
@@ -457,6 +466,11 @@ BEGIN
   Dos.GetTime(Hour,Minute,Second,Sec100);
 END;
 {$ENDIF OS_AMIGA}
+{$IFDEF OS_ULTIBO}
+BEGIN
+  Dos.GetTime(Hour,Minute,Second,Sec100);
+END;
+{$ENDIF OS_ULTIBO}
 
 {---------------------------------------------------------------------------}
 {  MinutesToTime -> Platforms DOS/DPMI/WIN/NT/OS2 - Updated 19Jun97 LdB     }

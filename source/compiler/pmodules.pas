@@ -392,7 +392,8 @@ implementation
         { CPU targets with microcontroller support can add a controller specific unit }
         if ControllerSupport and (target_info.system in systems_embedded) and
           (current_settings.controllertype<>ct_none) and
-          (embedded_controllers[current_settings.controllertype].controllerunitstr<>'') then
+          (embedded_controllers[current_settings.controllertype].controllerunitstr<>'') and
+          not(current_module.islibrary) then
           AddUnit(embedded_controllers[current_settings.controllertype].controllerunitstr);
       end;
 

@@ -13,7 +13,7 @@ Const
   UnixLikes = AllUnixOSes -[QNX];
  
   WinEventOSes = [win32,win64];
-  KVMAll       = [emx,go32v2,netware,netwlibc,os2,win32,win64,win16]+UnixLikes+AllAmigaLikeOSes;
+  KVMAll       = [emx,go32v2,netware,netwlibc,os2,win32,win64,win16,ultibo]+UnixLikes+AllAmigaLikeOSes;
   
   // all full KVMers have crt too, except Amigalikes
   CrtOSes      = KVMALL+[msdos,WatCom]-[aros,morphos];
@@ -65,7 +65,7 @@ begin
 
     T:=P.Targets.AddUnit('winevent.pp',WinEventOSes);
 
-    T:=P.Targets.AddUnit('keyboard.pp',KbdOSes);
+    T:=P.Targets.AddUnit('keyboard.pp',KbdOSes-[ultibo]);
     with T.Dependencies do
       begin
         AddInclude('keybrdh.inc');
@@ -75,16 +75,16 @@ begin
         AddInclude('nwsys.inc',[netware]);
         AddUnit   ('video',[win16]);
       end;
-
-    T:=P.Targets.AddUnit('mouse.pp',MouseOSes);
+      
+    T:=P.Targets.AddUnit('mouse.pp',MouseOSes-[ultibo]);
     with T.Dependencies do
      begin
        AddInclude('mouseh.inc');
        AddInclude('mouse.inc');
        AddUnit   ('winevent',[win32,win64]);
      end;
-
-    T:=P.Targets.AddUnit('video.pp',VideoOSes);
+     
+    T:=P.Targets.AddUnit('video.pp',VideoOSes-[ultibo]);
     with T.Dependencies do
      begin
        AddInclude('videoh.inc');
@@ -94,6 +94,28 @@ begin
        AddInclude('nwsys.inc',[netware]);
      end;
 
+    // Alternate versions for Ultibo to resolve name conflict
+    T:=P.Targets.AddUnit('consolekeyboard.pp',[ultibo]);
+    with T.Dependencies do
+      begin
+        AddInclude('keybrdh.inc');
+        AddInclude('keyboard.inc');
+      end;
+     
+    T:=P.Targets.AddUnit('consolemouse.pp',[ultibo]);
+    with T.Dependencies do
+     begin
+       AddInclude('mouseh.inc');
+       AddInclude('mouse.inc');
+     end;
+     
+    T:=P.Targets.AddUnit('consolevideo.pp',[ultibo]);
+    with T.Dependencies do
+     begin
+       AddInclude('videoh.inc');
+       AddInclude('video.inc');
+     end;
+     
     T:=P.Targets.AddUnit('crt.pp',CrtOSes);
     with T.Dependencies do
      begin
