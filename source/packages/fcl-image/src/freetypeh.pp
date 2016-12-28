@@ -20,6 +20,10 @@ unit freetypeh;
 
 interface
 
+{$IFDEF ULTIBO}
+uses Syscalls;
+{$ENDIF} 
+
 const
 
 {$packrecords c}
@@ -45,6 +49,15 @@ const
   freetypedll = 'freetype';
   {$define ft_found_platform}
 {$endif}
+// Ultibo
+{$IFDEF ULTIBO}
+  freetypedll = 'libfreetype';
+  {$linklib freetype}
+  {C Libraries (Needed here to ensure that libc.a and libgcc.a are listed last in the link.res file)(Fixed in 1.3.075)}
+  {--$linklib c}
+  {--$linklib gcc}
+  {$define ft_found_platform}
+{$ENDIF} 
 // Other platforms
 {$ifndef ft_found_platform}
   freetypedll = 'freetype';
@@ -54,17 +67,21 @@ type
   FT_Encoding = array[0..3] of char;
 
 const
-  FT_FACE_FLAG_SCALABLE = 1 shl 0;
-  FT_FACE_FLAG_FIXED_SIZES = 1 shl 1;
-  FT_FACE_FLAG_FIXED_WIDTH = 1 shl 2;
-  FT_FACE_FLAG_SFNT = 1 shl 3;
-  FT_FACE_FLAG_HORIZONTAL = 1 shl 4;
-  FT_FACE_FLAG_VERTICAL = 1 shl 5;
-  FT_FACE_FLAG_KERNING = 1 shl 6;
-  FT_FACE_FLAG_FAST_GLYPHS = 1 shl 7;
+  FT_FACE_FLAG_SCALABLE         = 1 shl 0;
+  FT_FACE_FLAG_FIXED_SIZES      = 1 shl 1;
+  FT_FACE_FLAG_FIXED_WIDTH      = 1 shl 2;
+  FT_FACE_FLAG_SFNT             = 1 shl 3;
+  FT_FACE_FLAG_HORIZONTAL       = 1 shl 4;
+  FT_FACE_FLAG_VERTICAL         = 1 shl 5;
+  FT_FACE_FLAG_KERNING          = 1 shl 6;
+  FT_FACE_FLAG_FAST_GLYPHS      = 1 shl 7;
   FT_FACE_FLAG_MULTIPLE_MASTERS = 1 shl 8;
-  FT_FACE_FLAG_GLYPH_NAMES = 1 shl 9;
-  FT_FACE_FLAG_EXTERNAL_STREAM = 1 shl 10;
+  FT_FACE_FLAG_GLYPH_NAMES      = 1 shl 9;
+  FT_FACE_FLAG_EXTERNAL_STREAM  = 1 shl 10;
+  FT_FACE_FLAG_HINTER           = 1 shl 11;
+  FT_FACE_FLAG_CID_KEYED        = 1 shl 12;
+  FT_FACE_FLAG_TRICKY           = 1 shl 13;
+  FT_FACE_FLAG_COLOR            = 1 shl 14;
 
   FT_STYLE_FLAG_ITALIC = 1 shl 0;
   FT_STYLE_FLAG_BOLD = 1 shl 1;
@@ -360,7 +377,6 @@ function FT_Done_FreeType(alibrary: PFT_Library): integer; cdecl; external freet
 function FT_Get_Char_Index(face: PFT_Face; charcode: FT_ULong): FT_UInt; cdecl; external freetypedll Name 'FT_Get_Char_Index';
 function FT_Get_Kerning(face: PFT_Face; left_glyph, right_glyph, kern_mode: FT_UInt; out akerning: FT_Vector): integer; cdecl; external freetypedll Name 'FT_Get_Kerning';
 function FT_Init_FreeType(var alibrary: PFT_Library): integer; cdecl; external freetypedll Name 'FT_Init_FreeType';
-function FT_IS_SCALABLE(face: PFT_Face): boolean;
 function FT_Load_Char(face: PFT_Face; charcode: FT_ULong; load_flags: longint): integer; cdecl; external freetypedll Name 'FT_Load_Char';
 function FT_Load_Glyph(face: PFT_Face; glyph_index: FT_UInt; load_flags: longint): integer; cdecl; external freetypedll Name 'FT_Load_Glyph';
 function FT_New_Face(alibrary: PFT_Library; filepathname: PChar; face_index: integer; var aface: PFT_Face): integer; cdecl; external freetypedll Name 'FT_New_Face';
@@ -382,11 +398,79 @@ function FT_Glyph_Transform(glyph: PFT_Glyph; matrix: PFT_Matrix; delta: PFT_Vec
 procedure FT_Done_Glyph(glyph: PFT_Glyph); cdecl; external freetypedll Name 'FT_Done_Glyph';
 procedure FT_Glyph_Get_CBox(glyph: PFT_Glyph; bbox_mode: FT_UInt; var acbox: FT_BBox); cdecl; external freetypedll Name 'FT_Glyph_Get_CBox';
 
+function FT_IS_SCALABLE(face: PFT_Face): boolean;
+function FT_HAS_HORIZONTAL (face: PFT_Face) : boolean;
+function FT_HAS_VERTICAL (face: PFT_Face) : boolean;
+function FT_HAS_KERNING (face: PFT_Face) : boolean;
+function FT_IS_SFNT (face: PFT_Face) : boolean;
+function FT_IS_FIXED_WIDTH (face: PFT_Face) : boolean;
+function FT_HAS_FIXED_SIZES (face: PFT_Face) : boolean;
+function FT_HAS_GLYPH_NAMES (face: PFT_Face) : boolean;
+function FT_HAS_MULTIPLE_MASTERS (face: PFT_Face) : boolean;
+function FT_IS_CID_KEYED (face: PFT_Face) : boolean;
+function FT_IS_TRICKY (face: PFT_Face) : boolean;
+function FT_HAS_COLOR (face: PFT_Face) : boolean;
+
 implementation
 
 function FT_IS_SCALABLE(face: PFT_Face): boolean;
 begin
-  Result := (face^.face_flags and FT_FACE_FLAG_SCALABLE) = 1;
+  Result := (face^.face_flags and FT_FACE_FLAG_SCALABLE) <> 0;
+end;
+
+function FT_HAS_HORIZONTAL (face: PFT_Face) : boolean;
+begin
+  Result := (face^.face_flags and FT_FACE_FLAG_HORIZONTAL) <> 0;
+end;
+
+function FT_HAS_VERTICAL (face: PFT_Face) : boolean;
+begin
+  Result := (face^.face_flags and FT_FACE_FLAG_VERTICAL) <> 0;
+end;
+
+function FT_HAS_KERNING (face: PFT_Face) : boolean;
+begin
+  Result := (face^.face_flags and FT_FACE_FLAG_KERNING) <> 0;
+end;
+
+function FT_IS_SFNT (face: PFT_Face) : boolean;
+begin
+  Result := (face^.face_flags and FT_FACE_FLAG_SFNT) <> 0;
+end;
+
+function FT_IS_FIXED_WIDTH (face: PFT_Face) : boolean;
+begin
+  Result := (face^.face_flags and FT_FACE_FLAG_FIXED_WIDTH) <> 0;
+end;
+
+function FT_HAS_FIXED_SIZES (face: PFT_Face) : boolean;
+begin
+  Result := (face^.face_flags and FT_FACE_FLAG_FIXED_SIZES) <> 0;
+end;
+
+function FT_HAS_GLYPH_NAMES (face: PFT_Face) : boolean;
+begin
+  Result := (face^.face_flags and FT_FACE_FLAG_GLYPH_NAMES) <> 0;
+end;
+
+function FT_HAS_MULTIPLE_MASTERS (face: PFT_Face) : boolean;
+begin
+  Result := (face^.face_flags and FT_FACE_FLAG_MULTIPLE_MASTERS) <> 0;
+end;
+
+function FT_IS_CID_KEYED (face: PFT_Face) : boolean;
+begin
+  Result := (face^.face_flags and FT_FACE_FLAG_CID_KEYED) <> 0;
+end;
+
+function FT_IS_TRICKY (face: PFT_Face) : boolean;
+begin
+  Result := (face^.face_flags and FT_FACE_FLAG_TRICKY) <> 0;
+end;
+
+function FT_HAS_COLOR (face: PFT_Face) : boolean;
+begin
+  Result := (face^.face_flags and FT_FACE_FLAG_COLOR) <> 0;
 end;
 
 end.

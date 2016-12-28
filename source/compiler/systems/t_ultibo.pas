@@ -400,11 +400,24 @@ begin
    end
   else
    begin
+    linklibc:=false;
     while not SharedLibFiles.Empty do
      begin
       S:=SharedLibFiles.GetFirst;
+      if s='c' then
+       begin
+        linklibc:=true;
+       end;
       LinkRes.Add('lib'+s+target_info.staticlibext);
      end;
+
+    { be sure that libc & libgcc are last }
+    if linklibc then
+     begin
+      LinkRes.Add('libc'+target_info.staticlibext);
+      LinkRes.Add('libgcc'+target_info.staticlibext);
+     end;
+
     LinkRes.Add(')');
    end;
 

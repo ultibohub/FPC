@@ -68,7 +68,9 @@ Type
       fpu_vfpv3,
       fpu_vfpv3_d16,
       fpu_fpv4_s16,
-      fpu_vfpv4
+      fpu_vfpv4,
+      fpu_vfpv3_neon,
+      fpu_vfpv4_neon
      );
 
    tcontrollertype =
@@ -539,7 +541,7 @@ Const
      'ARMV7EM'
    );
 
-   fputypestr : array[tfputype] of string[9] = ('',
+   fputypestr : array[tfputype] of string[10] = ('',
      'SOFT',
      'LIBGCC',
      'FPA',
@@ -549,7 +551,9 @@ Const
      'VFPV3',
      'VFPV3_D16',
      'FPV4_S16',
-     'VFPV4'
+     'VFPV4',
+     'VFPV3_NEON',
+     'VFPV4_NEON'
    );
 
 
@@ -999,7 +1003,7 @@ Const
       
     );
 
-   vfp_scalar = [fpu_vfpv2,fpu_vfpv3,fpu_vfpv3_d16,fpu_fpv4_s16];
+   vfp_scalar = [fpu_vfpv2,fpu_vfpv3,fpu_vfpv3_d16,fpu_fpv4_s16,fpu_vfpv3_neon];
 
    { Supported optimizations, only used for information }
    supported_optimizerswitches = genericlevel1optimizerswitches+

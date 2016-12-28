@@ -11,7 +11,7 @@ const
   ParadoxOSes         = [beos,haiku,linux,freebsd,netbsd,openbsd,win32,dragonfly];
   DatadictOSes        = [aix,beos,darwin,haiku,linux,freebsd,win32,win64,wince,android,dragonfly];
   SqldbConnectionOSes = [aix,beos,haiku,linux,freebsd,darwin,iphonesim,netbsd,openbsd,solaris,win32,win64,wince,android,dragonfly];
-  SqliteOSes          = [aix,beos,haiku,linux,freebsd,darwin,iphonesim,netbsd,openbsd,solaris,win32,win64,wince,android,dragonfly];
+  SqliteOSes          = [aix,beos,haiku,linux,freebsd,darwin,iphonesim,netbsd,openbsd,solaris,win32,win64,wince,android,dragonfly,ultibo];
   DBaseOSes           = [aix,beos,haiku,linux,freebsd,darwin,iphonesim,netbsd,openbsd,solaris,win32,win64,wince,android,os2,dragonfly];
   MSSQLOSes           = [beos,haiku,linux,freebsd,netbsd,openbsd,solaris,win32,win64,android,dragonfly];
   SqldbWithoutOracleOSes   = [win64];
@@ -763,7 +763,7 @@ begin
           AddUnit('customsqliteds');
           AddUnit('db');
         end;
-    T:=P.Targets.AddUnit('sqliteds.pas', SqliteOSes);
+    T:=P.Targets.AddUnit('sqliteds.pas', SqliteOSes-[ultibo]);
       with T.Dependencies do
         begin
           AddUnit('customsqliteds');

@@ -115,6 +115,10 @@ unit agarmgas;
           result:='-mfpu=fpv4-sp-d16 '+result;
         if (current_settings.fputype = fpu_vfpv4) then
           result:='-mfpu=vfpv4 '+result;
+        if (current_settings.fputype = fpu_vfpv3_neon) then
+          result:='-mfpu=neon '+result;
+        if (current_settings.fputype = fpu_vfpv4_neon) then
+          result:='-mfpu=neon-vfpv4 '+result;
 
         if GenerateThumb2Code then
           result:='-march='+cputype_to_gas_march[current_settings.cputype]+' -mthumb -mthumb-interwork '+result

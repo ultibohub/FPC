@@ -609,11 +609,7 @@ begin
 {$include sdl/fpmake.pp}
 end;
 
-procedure add_sqlite(const ADirectory: string);
-begin
-  with Installer do
 {$include sqlite/fpmake.pp}
-end;
 
 procedure add_svgalib(const ADirectory: string);
 begin

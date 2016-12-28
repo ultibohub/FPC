@@ -37,7 +37,7 @@ unit i_ultibo;
                             tf_smartlink_sections];
             cpu          : cpu_arm;
             unit_env     : '';
-            extradefines : '';
+            extradefines : {$ifdef FPC_ARMHF}'CPUARMHF'{$else}'CPUARMEL'{$endif}; //'';
             exeext       : '';
             defext       : '.def';
             scriptext    : '.sh';
@@ -72,23 +72,23 @@ unit i_ultibo;
             endian       : endian_little;
             alignment    :
               (
-                procalign       : 4;
-                loopalign       : 4;
-                jumpalign       : 0;
-                constalignmin   : 0;
-                constalignmax   : 4;
-                varalignmin     : 0;
-                varalignmax     : 4;
-                localalignmin   : 4;
-                localalignmax   : 4;
-                recordalignmin  : 0;
-                recordalignmax  : 4;
-                maxCrecordalign : 4
+                procalign       : 4; //4;
+                loopalign       : 4; //4;
+                jumpalign       : 0; //0;
+                constalignmin   : 0; //0;
+                constalignmax   : 8; //4;
+                varalignmin     : 0; //0;
+                varalignmax     : 8; //4;
+                localalignmin   : 4; //4;
+                localalignmax   : 8; //4;
+                recordalignmin  : 0; //0;
+                recordalignmax  : 8; //4;
+                maxCrecordalign : 8  //4
               );
             first_parm_offset : 8;
             stacksize    : 262144;
-            stackalign   : 4;
-            abi : abi_default;
+            stackalign   : 8; //4;
+            abi : {$ifdef FPC_ARMHF}abi_eabihf{$else}abi_eabi{$endif}; //abi_default;
             llvmdatalayout : 'e-p:32:32:32-i1:8:8-i8:8:8-i16:16:16-i32:32:32-i64:64:64-f32:32:32-f64:64:64-v64:64:64-v128:64:128-a0:0:64-n32-S32';
           );
 
