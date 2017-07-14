@@ -117,7 +117,8 @@ implementation
               fpu_vfpv2,
               fpu_vfpv3,
               fpu_vfpv3_d16,
-              fpu_fpv4_s16:
+              fpu_fpv4_s16,
+              fpu_vfpv3_neon:
                 expectloc:=LOC_MMREGISTER;
               else
                 internalerror(2009112702);
@@ -242,7 +243,8 @@ implementation
             end;
           fpu_vfpv2,
           fpu_vfpv3,
-          fpu_vfpv3_d16:
+          fpu_vfpv3_d16,
+          fpu_vfpv3_neon:
             begin
               location_reset(location,LOC_MMREGISTER,def_cgsize(resultdef));
               signed:=left.location.size=OS_S32;

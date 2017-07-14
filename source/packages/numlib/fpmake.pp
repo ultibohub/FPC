@@ -19,7 +19,7 @@ begin
     P.Version:='3.1.1';
     P.SourcePath.Add('src');
     P.IncludePath.Add('src');
-    P.OSes := AllUnixOSes+AllWindowsOSes-[qnx];
+    P.OSes := AllUnixOSes+AllWindowsOSes+[ultibo]-[qnx];
 //    P.Dependencies.Add('x11');
 
     T:=P.Targets.AddUnit('det.pas');
@@ -83,7 +83,7 @@ begin
           AddUnit('dsl');
           AddUnit('omv');
         end;
-    T:=P.Targets.AddUnit('numlib.pas');
+    T:=P.Targets.AddUnit('numlib.pas', P.OSes-[ultibo]);
       with T.Dependencies do
         begin
           AddInclude('direct.inc');

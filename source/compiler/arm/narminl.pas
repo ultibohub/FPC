@@ -86,7 +86,8 @@ implementation
           fpu_vfpv2,
           fpu_vfpv3,
           fpu_vfpv3_d16,
-          fpu_fpv4_s16:
+          fpu_fpv4_s16,
+          fpu_vfpv3_neon:
             begin
               hlcg.location_force_mmregscalar(current_asmdata.CurrAsmList,left.location,left.resultdef,true);
               location_copy(location,left.location);
@@ -125,7 +126,8 @@ implementation
                 expectloc:=LOC_FPUREGISTER;
               fpu_vfpv2,
               fpu_vfpv3,
-              fpu_vfpv3_d16:
+              fpu_vfpv3_d16,
+              fpu_vfpv3_neon:
                 expectloc:=LOC_MMREGISTER;
               fpu_fpv4_s16:
                 begin
@@ -155,7 +157,8 @@ implementation
                 expectloc:=LOC_FPUREGISTER;
               fpu_vfpv2,
               fpu_vfpv3,
-              fpu_vfpv3_d16:
+              fpu_vfpv3_d16,
+              fpu_vfpv3_neon:
                 expectloc:=LOC_MMREGISTER;
               fpu_fpv4_s16:
                 begin
@@ -185,7 +188,8 @@ implementation
                 expectloc:=LOC_FPUREGISTER;
               fpu_vfpv2,
               fpu_vfpv3,
-              fpu_vfpv3_d16:
+              fpu_vfpv3_d16,
+              fpu_vfpv3_neon:
                 expectloc:=LOC_MMREGISTER;
               fpu_fpv4_s16:
                 begin
@@ -244,7 +248,8 @@ implementation
             current_asmdata.CurrAsmList.concat(setoppostfix(taicpu.op_reg_reg(A_ABS,location.register,left.location.register),get_fpu_postfix(resultdef)));
           fpu_vfpv2,
           fpu_vfpv3,
-          fpu_vfpv3_d16:
+          fpu_vfpv3_d16,
+          fpu_vfpv3_neon:
             begin
               if singleprec then
                 pf:=PF_F32
@@ -280,7 +285,8 @@ implementation
             current_asmdata.CurrAsmList.concat(setoppostfix(taicpu.op_reg_reg_reg(A_MUF,location.register,left.location.register,left.location.register),get_fpu_postfix(resultdef)));
           fpu_vfpv2,
           fpu_vfpv3,
-          fpu_vfpv3_d16:
+          fpu_vfpv3_d16,
+          fpu_vfpv3_neon:
             begin
               if singleprec then
                 pf:=PF_F32
@@ -309,7 +315,8 @@ implementation
             current_asmdata.CurrAsmList.concat(setoppostfix(taicpu.op_reg_reg(A_SQT,location.register,left.location.register),get_fpu_postfix(resultdef)));
           fpu_vfpv2,
           fpu_vfpv3,
-          fpu_vfpv3_d16:
+          fpu_vfpv3_d16,
+          fpu_vfpv3_neon:
             begin
               if singleprec then
                 pf:=PF_F32

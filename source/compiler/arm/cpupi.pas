@@ -174,7 +174,8 @@ unit cpupi;
                 end;
               fpu_vfpv2,
               fpu_vfpv3,
-              fpu_vfpv3_d16:
+              fpu_vfpv3_d16,
+              fpu_vfpv3_neon:
                 begin
                   floatsavesize:=0;
                   regs:=cg.rg[R_MMREGISTER].used_in_proc-paramanager.get_volatile_registers_mm(pocall_stdcall);

@@ -384,6 +384,8 @@ function FT_Set_Char_Size(face: PFT_Face; char_width, char_height: FT_F26dot6; h
 function FT_Set_Pixel_Sizes(face: PFT_Face; pixel_width, pixel_height: FT_UInt): integer; cdecl; external freetypedll Name 'FT_Set_Pixel_Sizes';
 procedure FT_Set_Transform(face: PFT_Face; matrix: PFT_Matrix; delta: PFT_Vector); cdecl; external freetypedll Name 'FT_Set_Transform';
 
+function FT_New_Memory_Face(alibrary: PFT_Library; file_base: pointer; file_size: longint; face_index: integer; var face: PFT_Face) : integer; cdecl; external freetypedll Name 'FT_New_Memory_Face';
+
 //Outline Processing
 function FT_Outline_Decompose(outline: PFT_Outline; const func_interface: PFT_Outline_Funcs; user: Pointer): integer; cdecl; external freetypedll Name 'FT_Outline_Decompose';
 

@@ -290,7 +290,7 @@ unit cgcpu;
           non-overlapping subregs per register, so we can only use
           half the single precision registers for now (as sub registers of the
           double precision ones). }
-        if current_settings.fputype=fpu_vfpv3 then
+        if current_settings.fputype in [fpu_vfpv3,fpu_vfpv3_neon] then
           rg[R_MMREGISTER]:=trgcpu.create(R_MMREGISTER,R_SUBFD,
               [RS_D0,RS_D1,RS_D2,RS_D3,RS_D4,RS_D5,RS_D6,RS_D7,
                RS_D16,RS_D17,RS_D18,RS_D19,RS_D20,RS_D21,RS_D22,RS_D23,RS_D24,RS_D25,RS_D26,RS_D27,RS_D28,RS_D29,RS_D30,RS_D31,
@@ -1922,7 +1922,8 @@ unit cgcpu;
                 end;
               fpu_vfpv2,
               fpu_vfpv3,
-              fpu_vfpv3_d16:
+              fpu_vfpv3_d16,
+              fpu_vfpv3_neon:
                 begin;
                   mmregs:=rg[R_MMREGISTER].used_in_proc-paramanager.get_volatile_registers_mm(pocall_stdcall);
                 end;
@@ -2068,7 +2069,7 @@ unit cgcpu;
              begin
                reference_reset(ref,4);
                if (tg.direction*tarmprocinfo(current_procinfo).floatregstart>=1023) or
-                  (current_settings.fputype in [fpu_vfpv2,fpu_vfpv3,fpu_vfpv3_d16]) then
+                  (current_settings.fputype in [fpu_vfpv2,fpu_vfpv3,fpu_vfpv3_d16,fpu_vfpv3_neon]) then
                  begin
                    if not is_shifter_const(tarmprocinfo(current_procinfo).floatregstart,shift) then
                      begin
@@ -2097,7 +2098,8 @@ unit cgcpu;
                    end;
                  fpu_vfpv2,
                  fpu_vfpv3,
-                 fpu_vfpv3_d16:
+                 fpu_vfpv3_d16,
+                 fpu_vfpv3_neon:
                    begin
                      ref.index:=ref.base;
                      ref.base:=NR_NO;
@@ -2157,7 +2159,8 @@ unit cgcpu;
                 end;
               fpu_vfpv2,
               fpu_vfpv3,
-              fpu_vfpv3_d16:
+              fpu_vfpv3_d16,
+              fpu_vfpv3_neon:
                 begin;
                   { restore vfp registers? }
                   mmregs:=rg[R_MMREGISTER].used_in_proc-paramanager.get_volatile_registers_mm(pocall_stdcall);
@@ -2169,7 +2172,7 @@ unit cgcpu;
               begin
                 reference_reset(ref,4);
                 if (tg.direction*tarmprocinfo(current_procinfo).floatregstart>=1023) or
-                   (current_settings.fputype in [fpu_vfpv2,fpu_vfpv3,fpu_vfpv3_d16]) then
+                   (current_settings.fputype in [fpu_vfpv2,fpu_vfpv3,fpu_vfpv3_d16,fpu_vfpv3_neon]) then
                   begin
                     if not is_shifter_const(tarmprocinfo(current_procinfo).floatregstart,shift) then
                       begin
@@ -2197,7 +2200,8 @@ unit cgcpu;
                     end;
                   fpu_vfpv2,
                   fpu_vfpv3,
-                  fpu_vfpv3_d16:
+                  fpu_vfpv3_d16,
+                  fpu_vfpv3_neon:
                     begin
                       ref.index:=ref.base;
                       ref.base:=NR_NO;
@@ -4219,7 +4223,7 @@ unit cgcpu;
         rg[R_FPUREGISTER]:=trgcpu.create(R_FPUREGISTER,R_SUBNONE,
             [RS_F0,RS_F1,RS_F2,RS_F3,RS_F4,RS_F5,RS_F6,RS_F7],first_fpu_imreg,[]);
 
-        if current_settings.fputype=fpu_vfpv3 then
+        if current_settings.fputype in [fpu_vfpv3,fpu_vfpv3_neon] then
           rg[R_MMREGISTER]:=trgcpu.create(R_MMREGISTER,R_SUBFD,
               [RS_D0,RS_D1,RS_D2,RS_D3,RS_D4,RS_D5,RS_D6,RS_D7,
                RS_D16,RS_D17,RS_D18,RS_D19,RS_D20,RS_D21,RS_D22,RS_D23,RS_D24,RS_D25,RS_D26,RS_D27,RS_D28,RS_D29,RS_D30,RS_D31,

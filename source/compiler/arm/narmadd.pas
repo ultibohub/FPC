@@ -200,7 +200,8 @@ interface
             end;
           fpu_vfpv2,
           fpu_vfpv3,
-          fpu_vfpv3_d16:
+          fpu_vfpv3_d16,
+          fpu_vfpv3_neon:
             begin
               { force mmreg as location, left right doesn't matter
                 as both will be in a fpureg }
@@ -299,7 +300,8 @@ interface
             end;
           fpu_vfpv2,
           fpu_vfpv3,
-          fpu_vfpv3_d16:
+          fpu_vfpv3_d16,
+          fpu_vfpv3_neon:
             begin
               hlcg.location_force_mmregscalar(current_asmdata.CurrAsmList,left.location,left.resultdef,true);
               hlcg.location_force_mmregscalar(current_asmdata.CurrAsmList,right.location,right.resultdef,true);
