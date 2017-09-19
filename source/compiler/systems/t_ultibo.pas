@@ -506,6 +506,43 @@ begin
          Add('    _etext = .;');
          Add('    }');
 
+         Add('    .preinit_array :');
+         Add('    {');
+         Add('    __preinit_array_start = .;');
+         Add('    KEEP(*(.preinit_array))');
+         Add('    __preinit_array_end = .;');
+         Add('    }');
+         
+         Add('    .init_array :');
+         Add('    {');
+         Add('    __init_array_start = .;');
+         Add('    KEEP(*(.init_array))');
+         Add('    __init_array_end = .;');
+         Add('    }');
+
+         Add('    .fini_array :');
+         Add('    {');
+         Add('    __fini_array_start = .;');
+         Add('    KEEP(*(.fini_array))');
+         Add('    __fini_array_end = .;');
+         Add('    }');
+
+         Add('    .ctors :');
+         Add('    {');
+         Add('    __ctors_start = .;');
+         Add('    KEEP(*(SORT(.ctors.*)))');
+         Add('    KEEP(*(.ctors))');
+         Add('    __ctors_end = .;');
+         Add('    }');
+
+         Add('    .dtors :');
+         Add('    {');
+         Add('    __dtors_start = .;');
+         Add('    KEEP(*(SORT(.dtors.*)))');
+         Add('    KEEP(*(.dtors))');
+         Add('    __dtors_end = .;');
+         Add('    }');
+         
          Add('    .data ALIGN(4096):');
          Add('    {');
          Add('    _data = .;');
@@ -589,6 +626,43 @@ begin
          Add('    _etext = .;');
          Add('    }');
 
+         Add('    .preinit_array :');
+         Add('    {');
+         Add('    __preinit_array_start = .;');
+         Add('    KEEP(*(.preinit_array))');
+         Add('    __preinit_array_end = .;');
+         Add('    }');
+         
+         Add('    .init_array :');
+         Add('    {');
+         Add('    __init_array_start = .;');
+         Add('    KEEP(*(.init_array))');
+         Add('    __init_array_end = .;');
+         Add('    }');
+
+         Add('    .fini_array :');
+         Add('    {');
+         Add('    __fini_array_start = .;');
+         Add('    KEEP(*(.fini_array))');
+         Add('    __fini_array_end = .;');
+         Add('    }');
+
+         Add('    .ctors :');
+         Add('    {');
+         Add('    __ctors_start = .;');
+         Add('    KEEP(*(SORT(.ctors.*)))');
+         Add('    KEEP(*(.ctors))');
+         Add('    __ctors_end = .;');
+         Add('    }');
+
+         Add('    .dtors :');
+         Add('    {');
+         Add('    __dtors_start = .;');
+         Add('    KEEP(*(SORT(.dtors.*)))');
+         Add('    KEEP(*(.dtors))');
+         Add('    __dtors_end = .;');
+         Add('    }');
+         
          Add('    .data ALIGN(4096):');
          Add('    {');
          Add('    _data = .;');

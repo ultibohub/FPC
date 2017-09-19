@@ -22,6 +22,11 @@ uses
 {$PACKRECORDS C}
 {$ENDIF}
 
+{$ifdef ultibo}
+  {These libraries need to be linked in the following order}
+  {$linklib libGLESv2}
+  {$linklib libEGL}
+{$endif}
 
   {
   ** License Applicability. Except to the extent portions of this file are
@@ -612,6 +617,229 @@ uses
      GL_COORD_REPLACE_OES = $8862;     
   {*********************************************************** }
 
+  {$ifdef ultibo}
+  const
+    libGLESv2 = 'GLESv2';  
+
+    procedure glAlphaFunc(func:GLenum; ref:GLclampf); cdecl; external libGLESv2 name 'glAlphaFunc';
+    procedure glClearColor(red:GLclampf; green:GLclampf; blue:GLclampf; alpha:GLclampf); cdecl; external libGLESv2 name 'glClearColor';
+    procedure glClearDepthf(depth:GLclampf); cdecl; external libGLESv2 name 'glClearDepthf';
+(* Const before type ignored *)
+    procedure glClipPlanef(plane:GLenum; equation:PGLfloat); cdecl; external libGLESv2 name 'glClipPlanef';
+    procedure glColor4f(red:GLfloat; green:GLfloat; blue:GLfloat; alpha:GLfloat); cdecl; external libGLESv2 name 'glColor4f';
+    procedure glDepthRangef(zNear:GLclampf; zFar:GLclampf); cdecl; external libGLESv2 name 'glDepthRangef';
+    procedure glFogf(pname:GLenum; param:GLfloat); cdecl; external libGLESv2 name 'glFogf';
+(* Const before type ignored *)
+    procedure glFogfv(pname:GLenum; params:PGLfloat); cdecl; external libGLESv2 name 'glFogfv';
+    procedure glFrustumf(left:GLfloat; right:GLfloat; bottom:GLfloat; top:GLfloat; zNear:GLfloat; 
+      zFar:GLfloat); cdecl; external libGLESv2 name 'glFrustumf';
+    procedure glGetClipPlanef(pname:GLenum; eqn:PGLFloatVector4); cdecl; external libGLESv2 name 'glGetClipPlanef';
+    procedure glGetFloatv(pname:GLenum; params:PGLfloat); cdecl; external libGLESv2 name 'glGetFloatv';
+    procedure glGetLightfv(light:GLenum; pname:GLenum; params:PGLfloat); cdecl; external libGLESv2 name 'glGetLightfv';
+    procedure glGetMaterialfv(face:GLenum; pname:GLenum; params:PGLfloat); cdecl; external libGLESv2 name 'glGetMaterialfv';
+    procedure glGetTexEnvfv(env:GLenum; pname:GLenum; params:PGLfloat); cdecl; external libGLESv2 name 'glGetTexEnvfv';
+    procedure glGetTexParameterfv(target:GLenum; pname:GLenum; params:PGLfloat); cdecl; external libGLESv2 name 'glGetTexParameterfv';
+    procedure glLightModelf(pname:GLenum; param:GLfloat); cdecl; external libGLESv2 name 'glLightModelf';
+(* Const before type ignored *)
+    procedure glLightModelfv(pname:GLenum; params:PGLfloat); cdecl; external libGLESv2 name 'glLightModelfv';
+    procedure glLightf(light:GLenum; pname:GLenum; param:GLfloat); cdecl; external libGLESv2 name 'glLightf';
+(* Const before type ignored *)
+    procedure glLightfv(light:GLenum; pname:GLenum; params:PGLfloat); cdecl; external libGLESv2 name 'glLightfv';
+    procedure glLineWidth(width:GLfloat); cdecl; external libGLESv2 name 'glLineWidth';
+(* Const before type ignored *)
+    procedure glLoadMatrixf(m:PGLfloat); cdecl; external libGLESv2 name 'glLoadMatrixf';
+    procedure glMaterialf(face:GLenum; pname:GLenum; param:GLfloat); cdecl; external libGLESv2 name 'glMaterialf';
+(* Const before type ignored *)
+    procedure glMaterialfv(face:GLenum; pname:GLenum; params:PGLfloat); cdecl; external libGLESv2 name 'glMaterialfv';
+(* Const before type ignored *)
+    procedure glMultMatrixf(m:PGLfloat); cdecl; external libGLESv2 name 'glMultMatrixf';
+    procedure glMultiTexCoord4f(target:GLenum; s:GLfloat; t:GLfloat; r:GLfloat; q:GLfloat); cdecl; external libGLESv2 name 'glMultiTexCoord4f';
+    procedure glNormal3f(nx:GLfloat; ny:GLfloat; nz:GLfloat); cdecl; external libGLESv2 name 'glNormal3f';
+    procedure glOrthof(left:GLfloat; right:GLfloat; bottom:GLfloat; top:GLfloat; zNear:GLfloat; 
+      zFar:GLfloat); cdecl; external libGLESv2 name 'glOrthof';
+    procedure glPointParameterf(pname:GLenum; param:GLfloat); cdecl; external libGLESv2 name 'glPointParameterf';
+(* Const before type ignored *)
+    procedure glPointParameterfv(pname:GLenum; params:PGLfloat); cdecl; external libGLESv2 name 'glPointParameterfv';
+    procedure glPointSize(size:GLfloat); cdecl; external libGLESv2 name 'glPointSize';
+    procedure glPolygonOffset(factor:GLfloat; units:GLfloat); cdecl; external libGLESv2 name 'glPolygonOffset';
+    procedure glRotatef(angle:GLfloat; x:GLfloat; y:GLfloat; z:GLfloat); cdecl; external libGLESv2 name 'glRotatef';
+    procedure glScalef(x:GLfloat; y:GLfloat; z:GLfloat); cdecl; external libGLESv2 name 'glScalef';
+    procedure glTexEnvf(target:GLenum; pname:GLenum; param:GLfloat); cdecl; external libGLESv2 name 'glTexEnvf';
+(* Const before type ignored *)
+    procedure glTexEnvfv(target:GLenum; pname:GLenum; params:PGLfloat); cdecl; external libGLESv2 name 'glTexEnvfv';
+    procedure glTexParameterf(target:GLenum; pname:GLenum; param:GLfloat); cdecl; external libGLESv2 name 'glTexParameterf';
+(* Const before type ignored *)
+    procedure glTexParameterfv(target:GLenum; pname:GLenum; params:PGLfloat); cdecl; external libGLESv2 name 'glTexParameterfv';
+    procedure glTranslatef(x:GLfloat; y:GLfloat; z:GLfloat); cdecl; external libGLESv2 name 'glTranslatef';
+    procedure glActiveTexture(texture:GLenum); cdecl; external libGLESv2 name 'glActiveTexture';
+    procedure glAlphaFuncx(func:GLenum; ref:GLclampx); cdecl; external libGLESv2 name 'glAlphaFuncx';
+    procedure glBindBuffer(target:GLenum; buffer:GLuint); cdecl; external libGLESv2 name 'glBindBuffer';
+    procedure glBindTexture(target:GLenum; texture:GLuint); cdecl; external libGLESv2 name 'glBindTexture';
+    procedure glBlendFunc(sfactor:GLenum; dfactor:GLenum); cdecl; external libGLESv2 name 'glBlendFunc';
+(* Const before type ignored *)
+    procedure glBufferData(target:GLenum; size:GLsizeiptr; data:PGLvoid; usage:GLenum); cdecl; external libGLESv2 name 'glBufferData';
+(* Const before type ignored *)
+    procedure glBufferSubData(target:GLenum; offset:GLintptr; size:GLsizeiptr; data:PGLvoid); cdecl; external libGLESv2 name 'glBufferSubData';
+    procedure glClear(mask:GLbitfield); cdecl; external libGLESv2 name 'glClear';
+    procedure glClearColorx(red:GLclampx; green:GLclampx; blue:GLclampx; alpha:GLclampx); cdecl; external libGLESv2 name 'glClearColorx';
+    procedure glClearDepthx(depth:GLclampx); cdecl; external libGLESv2 name 'glClearDepthx';
+    procedure glClearStencil(s:GLint); cdecl; external libGLESv2 name 'glClearStencil';
+    procedure glClientActiveTexture(texture:GLenum); cdecl; external libGLESv2 name 'glClientActiveTexture';
+(* Const before type ignored *)
+    procedure glClipPlanex(plane:GLenum; equation:PGLfixed); cdecl; external libGLESv2 name 'glClipPlanex';
+    procedure glColor4ub(red:GLubyte; green:GLubyte; blue:GLubyte; alpha:GLubyte); cdecl; external libGLESv2 name 'glColor4ub';
+    procedure glColor4x(red:GLfixed; green:GLfixed; blue:GLfixed; alpha:GLfixed); cdecl; external libGLESv2 name 'glColor4x';
+    procedure glColorMask(red:GLboolean; green:GLboolean; blue:GLboolean; alpha:GLboolean); cdecl; external libGLESv2 name 'glColorMask';
+(* Const before type ignored *)
+    procedure glColorPointer(size:GLint; _type:GLenum; stride:GLsizei; pointer:PGLvoid); cdecl; external libGLESv2 name 'glColorPointer';
+(* Const before type ignored *)
+    procedure glCompressedTexImage2D(target:GLenum; level:GLint; internalformat:GLenum; width:GLsizei; height:GLsizei; 
+      border:GLint; imageSize:GLsizei; data:PGLvoid); cdecl; external libGLESv2 name 'glCompressedTexImage2D';
+(* Const before type ignored *)
+    procedure glCompressedTexSubImage2D(target:GLenum; level:GLint; xoffset:GLint; yoffset:GLint; width:GLsizei; 
+      height:GLsizei; format:GLenum; imageSize:GLsizei; data:PGLvoid); cdecl; external libGLESv2 name 'glCompressedTexSubImage2D';
+    procedure glCopyTexImage2D(target:GLenum; level:GLint; internalformat:GLenum; x:GLint; y:GLint; 
+      width:GLsizei; height:GLsizei; border:GLint); cdecl; external libGLESv2 name 'glCopyTexImage2D';
+    procedure glCopyTexSubImage2D(target:GLenum; level:GLint; xoffset:GLint; yoffset:GLint; x:GLint; 
+      y:GLint; width:GLsizei; height:GLsizei); cdecl; external libGLESv2 name 'glCopyTexSubImage2D';
+    procedure glCullFace(mode:GLenum); cdecl; external libGLESv2 name 'glCullFace';
+(* Const before type ignored *)
+    procedure glDeleteBuffers(n:GLsizei; buffers:PGLuint); cdecl; external libGLESv2 name 'glDeleteBuffers';
+(* Const before type ignored *)
+    procedure glDeleteTextures(n:GLsizei; textures:PGLuint); cdecl; external libGLESv2 name 'glDeleteTextures';
+    procedure glDepthFunc(func:GLenum); cdecl; external libGLESv2 name 'glDepthFunc';
+    procedure glDepthMask(flag:GLboolean); cdecl; external libGLESv2 name 'glDepthMask';
+    procedure glDepthRangex(zNear:GLclampx; zFar:GLclampx); cdecl; external libGLESv2 name 'glDepthRangex';
+    procedure glDisable(cap:GLenum); cdecl; external libGLESv2 name 'glDisable';
+    procedure glDisableClientState(arr:GLenum); cdecl; external libGLESv2 name 'glDisableClientState';
+    procedure glDrawArrays(mode:GLenum; first:GLint; count:GLsizei); cdecl; external libGLESv2 name 'glDrawArrays';
+(* Const before type ignored *)
+    procedure glDrawElements(mode:GLenum; count:GLsizei; _type:GLenum; indices:PGLvoid); cdecl; external libGLESv2 name 'glDrawElements';
+    procedure glEnable(cap:GLenum); cdecl; external libGLESv2 name 'glEnable';
+    procedure glEnableClientState(arr:GLenum); cdecl; external libGLESv2 name 'glEnableClientState';
+    procedure glFinish; cdecl; external libGLESv2 name 'glFinish';
+    procedure glFlush; cdecl; external libGLESv2 name 'glFlush';
+    procedure glFogx(pname:GLenum; param:GLfixed); cdecl; external libGLESv2 name 'glFogx';
+(* Const before type ignored *)
+    procedure glFogxv(pname:GLenum; params:PGLfixed); cdecl; external libGLESv2 name 'glFogxv';
+    procedure glFrontFace(mode:GLenum); cdecl; external libGLESv2 name 'glFrontFace';
+    procedure glFrustumx(left:GLfixed; right:GLfixed; bottom:GLfixed; top:GLfixed; zNear:GLfixed; 
+      zFar:GLfixed); cdecl; external libGLESv2 name 'glFrustumx';
+    procedure glGetBooleanv(pname:GLenum; params:PGLboolean); cdecl; external libGLESv2 name 'glGetBooleanv';
+    procedure glGetBufferParameteriv(target:GLenum; pname:GLenum; params:PGLint); cdecl; external libGLESv2 name 'glGetBufferParameteriv';
+    procedure glGetClipPlanex(pname:GLenum; eqn:GLFixedVector4); cdecl; external libGLESv2 name 'glGetClipPlanex';
+    procedure glGenBuffers(n:GLsizei; buffers:PGLuint); cdecl; external libGLESv2 name 'glGenBuffers';
+    procedure glGenTextures(n:GLsizei; textures:PGLuint); cdecl; external libGLESv2 name 'glGenTextures';
+    function glGetError:GLenum; cdecl; external libGLESv2 name 'glGetError';
+    procedure glGetFixedv(pname:GLenum; params:PGLfixed); cdecl; external libGLESv2 name 'glGetFixedv';
+    procedure glGetIntegerv(pname:GLenum; params:PGLint); cdecl; external libGLESv2 name 'glGetIntegerv';
+    procedure glGetLightxv(light:GLenum; pname:GLenum; params:PGLfixed); cdecl; external libGLESv2 name 'glGetLightxv';
+    procedure glGetMaterialxv(face:GLenum; pname:GLenum; params:PGLfixed); cdecl; external libGLESv2 name 'glGetMaterialxv';
+    procedure glGetPointerv(pname:GLenum; params:Ppointer); cdecl; external libGLESv2 name 'glGetPointerv';
+(* Const before type ignored *)
+    function glGetString(name:GLenum):PGLubyte; cdecl; external libGLESv2 name 'glGetString';
+    procedure glGetTexEnviv(env:GLenum; pname:GLenum; params:PGLint); cdecl; external libGLESv2 name 'glGetTexEnviv';
+    procedure glGetTexEnvxv(env:GLenum; pname:GLenum; params:PGLfixed); cdecl; external libGLESv2 name 'glGetTexEnvxv';
+    procedure glGetTexParameteriv(target:GLenum; pname:GLenum; params:PGLint); cdecl; external libGLESv2 name 'glGetTexParameteriv';
+    procedure glGetTexParameterxv(target:GLenum; pname:GLenum; params:PGLfixed); cdecl; external libGLESv2 name 'glGetTexParameterxv';
+    procedure glHint(target:GLenum; mode:GLenum); cdecl; external libGLESv2 name 'glHint';
+    function glIsBuffer(buffer:GLuint):GLboolean; cdecl; external libGLESv2 name 'glIsBuffer';
+    function glIsEnabled(cap:GLenum):GLboolean; cdecl; external libGLESv2 name 'glIsEnabled';
+    function glIsTexture(texture:GLuint):GLboolean; cdecl; external libGLESv2 name 'glIsTexture';
+    procedure glLightModelx(pname:GLenum; param:GLfixed); cdecl; external libGLESv2 name 'glLightModelx';
+(* Const before type ignored *)
+    procedure glLightModelxv(pname:GLenum; params:PGLfixed); cdecl; external libGLESv2 name 'glLightModelxv';
+    procedure glLightx(light:GLenum; pname:GLenum; param:GLfixed); cdecl; external libGLESv2 name 'glLightx';
+(* Const before type ignored *)
+    procedure glLightxv(light:GLenum; pname:GLenum; params:PGLfixed); cdecl; external libGLESv2 name 'glLightxv';
+    procedure glLineWidthx(width:GLfixed); cdecl; external libGLESv2 name 'glLineWidthx';
+    procedure glLoadIdentity; cdecl; external libGLESv2 name 'glLoadIdentity';
+(* Const before type ignored *)
+    procedure glLoadMatrixx(m:PGLfixed); cdecl; external libGLESv2 name 'glLoadMatrixx';
+    procedure glLogicOp(opcode:GLenum); cdecl; external libGLESv2 name 'glLogicOp';
+    procedure glMaterialx(face:GLenum; pname:GLenum; param:GLfixed); cdecl; external libGLESv2 name 'glMaterialx';
+(* Const before type ignored *)
+    procedure glMaterialxv(face:GLenum; pname:GLenum; params:PGLfixed); cdecl; external libGLESv2 name 'glMaterialxv';
+    procedure glMatrixMode(mode:GLenum); cdecl; external libGLESv2 name 'glMatrixMode';
+(* Const before type ignored *)
+    procedure glMultMatrixx(m:PGLfixed); cdecl; external libGLESv2 name 'glMultMatrixx';
+    procedure glMultiTexCoord4x(target:GLenum; s:GLfixed; t:GLfixed; r:GLfixed; q:GLfixed); cdecl; external libGLESv2 name 'glMultiTexCoord4x';
+    procedure glNormal3x(nx:GLfixed; ny:GLfixed; nz:GLfixed); cdecl; external libGLESv2 name 'glNormal3x';
+(* Const before type ignored *)
+    procedure glNormalPointer(_type:GLenum; stride:GLsizei; pointer:PGLvoid); cdecl; external libGLESv2 name 'glNormalPointer';
+    procedure glOrthox(left:GLfixed; right:GLfixed; bottom:GLfixed; top:GLfixed; zNear:GLfixed; 
+      zFar:GLfixed); cdecl; external libGLESv2 name 'glOrthox';
+    procedure glPixelStorei(pname:GLenum; param:GLint); cdecl; external libGLESv2 name 'glPixelStorei';
+    procedure glPointParameterx(pname:GLenum; param:GLfixed); cdecl; external libGLESv2 name 'glPointParameterx';
+(* Const before type ignored *)
+    procedure glPointParameterxv(pname:GLenum; params:PGLfixed); cdecl; external libGLESv2 name 'glPointParameterxv';
+    procedure glPointSizex(size:GLfixed); cdecl; external libGLESv2 name 'glPointSizex';
+    procedure glPolygonOffsetx(factor:GLfixed; units:GLfixed); cdecl; external libGLESv2 name 'glPolygonOffsetx';
+    procedure glPopMatrix; cdecl; external libGLESv2 name 'glPopMatrix';
+    procedure glPushMatrix; cdecl; external libGLESv2 name 'glPushMatrix';
+    procedure glReadPixels(x:GLint; y:GLint; width:GLsizei; height:GLsizei; format:GLenum; 
+      _type:GLenum; pixels:PGLvoid); cdecl; external libGLESv2 name 'glReadPixels';
+    procedure glRotatex(angle:GLfixed; x:GLfixed; y:GLfixed; z:GLfixed); cdecl; external libGLESv2 name 'glRotatex';
+    procedure glSampleCoverage(value:GLclampf; invert:GLboolean); cdecl; external libGLESv2 name 'glSampleCoverage';
+    procedure glSampleCoveragex(value:GLclampx; invert:GLboolean); cdecl; external libGLESv2 name 'glSampleCoveragex';
+    procedure glScalex(x:GLfixed; y:GLfixed; z:GLfixed); cdecl; external libGLESv2 name 'glScalex';
+    procedure glScissor(x:GLint; y:GLint; width:GLsizei; height:GLsizei); cdecl; external libGLESv2 name 'glScissor';
+    procedure glShadeModel(mode:GLenum); cdecl; external libGLESv2 name 'glShadeModel';
+    procedure glStencilFunc(func:GLenum; ref:GLint; mask:GLuint); cdecl; external libGLESv2 name 'glStencilFunc';
+    procedure glStencilMask(mask:GLuint); cdecl; external libGLESv2 name 'glStencilMask';
+    procedure glStencilOp(fail:GLenum; zfail:GLenum; zpass:GLenum); cdecl; external libGLESv2 name 'glStencilOp';
+(* Const before type ignored *)
+    procedure glTexCoordPointer(size:GLint; _type:GLenum; stride:GLsizei; pointer:PGLvoid); cdecl; external libGLESv2 name 'glTexCoordPointer';
+    procedure glTexEnvi(target:GLenum; pname:GLenum; param:GLint); cdecl; external libGLESv2 name 'glTexEnvi';
+    procedure glTexEnvx(target:GLenum; pname:GLenum; param:GLfixed); cdecl; external libGLESv2 name 'glTexEnvx';
+(* Const before type ignored *)
+    procedure glTexEnviv(target:GLenum; pname:GLenum; params:PGLint); cdecl; external libGLESv2 name 'glTexEnviv';
+(* Const before type ignored *)
+    procedure glTexEnvxv(target:GLenum; pname:GLenum; params:PGLfixed); cdecl; external libGLESv2 name 'glTexEnvxv';
+(* Const before type ignored *)
+    procedure glTexImage2D(target:GLenum; level:GLint; internalformat:GLint; width:GLsizei; height:GLsizei; 
+      border:GLint; format:GLenum; _type:GLenum; pixels:PGLvoid); cdecl; external libGLESv2 name 'glTexImage2D';
+    procedure glTexParameteri(target:GLenum; pname:GLenum; param:GLint); cdecl; external libGLESv2 name 'glTexParameteri';
+    procedure glTexParameterx(target:GLenum; pname:GLenum; param:GLfixed); cdecl; external libGLESv2 name 'glTexParameterx';
+(* Const before type ignored *)
+    procedure glTexParameteriv(target:GLenum; pname:GLenum; params:PGLint); cdecl; external libGLESv2 name 'glTexParameteriv';
+(* Const before type ignored *)
+    procedure glTexParameterxv(target:GLenum; pname:GLenum; params:PGLfixed); cdecl; external libGLESv2 name 'glTexParameterxv';
+(* Const before type ignored *)
+    procedure glTexSubImage2D(target:GLenum; level:GLint; xoffset:GLint; yoffset:GLint; width:GLsizei; 
+      height:GLsizei; format:GLenum; _type:GLenum; pixels:PGLvoid); cdecl; external libGLESv2 name 'glTexSubImage2D';
+    procedure glTranslatex(x:GLfixed; y:GLfixed; z:GLfixed); cdecl; external libGLESv2 name 'glTranslatex';
+(* Const before type ignored *)
+    procedure glVertexPointer(size:GLint; _type:GLenum; stride:GLsizei; pointer:PGLvoid); cdecl; external libGLESv2 name 'glVertexPointer';
+    procedure glViewport(x:GLint; y:GLint; width:GLsizei; height:GLsizei); cdecl; external libGLESv2 name 'glViewport';
+
+  {*************************************************************************************** }
+  {                                 OES extensionfunctions                                }
+  {*************************************************************************************** }
+  { OES_matrix_palette  }
+    procedure glCurrentPaletteMatrixOES(matrixpaletteindex:GLuint); cdecl; external libGLESv2 name 'glCurrentPaletteMatrixOES';
+    procedure glLoadPaletteFromModelViewMatrixOES; cdecl; external libGLESv2 name 'glLoadPaletteFromModelViewMatrixOES';
+(* Const before type ignored *)
+    procedure glMatrixIndexPointerOES(size:GLint; _type:GLenum; stride:GLsizei; pointer:PGLvoid); cdecl; external libGLESv2 name 'glMatrixIndexPointerOES';
+(* Const before type ignored *)
+    procedure glWeightPointerOES(size:GLint; _type:GLenum; stride:GLsizei; pointer:PGLvoid); cdecl; external libGLESv2 name 'glWeightPointerOES';
+  { OES_point_size_array  }
+(* Const before type ignored *)
+    procedure glPointSizePointerOES(_type:GLenum; stride:GLsizei; pointer:PGLvoid); cdecl; external libGLESv2 name 'glPointSizePointerOES';
+  { OES_draw_texture  }
+    procedure glDrawTexsOES(x:GLshort; y:GLshort; z:GLshort; width:GLshort; height:GLshort); cdecl; external libGLESv2 name 'glDrawTexsOES';
+    procedure glDrawTexiOES(x:GLint; y:GLint; z:GLint; width:GLint; height:GLint); cdecl; external libGLESv2 name 'glDrawTexiOES';
+    procedure glDrawTexxOES(x:GLfixed; y:GLfixed; z:GLfixed; width:GLfixed; height:GLfixed); cdecl; external libGLESv2 name 'glDrawTexxOES';
+(* Const before type ignored *)
+    procedure glDrawTexsvOES(coords:PGLshort); cdecl; external libGLESv2 name 'glDrawTexsvOES';
+(* Const before type ignored *)
+    procedure glDrawTexivOES(coords:PGLint); cdecl; external libGLESv2 name 'glDrawTexivOES';
+(* Const before type ignored *)
+    procedure glDrawTexxvOES(coords:PGLfixed); cdecl; external libGLESv2 name 'glDrawTexxvOES';
+    procedure glDrawTexfOES(x:GLfloat; y:GLfloat; z:GLfloat; width:GLfloat; height:GLfloat); cdecl; external libGLESv2 name 'glDrawTexfOES';
+(* Const before type ignored *)
+    procedure glDrawTexfvOES(coords:PGLfloat); cdecl; external libGLESv2 name 'glDrawTexfvOES';
+  {$else}
   var
     glAlphaFunc : procedure(func:GLenum; ref:GLclampf);cdecl;
     glClearColor : procedure(red:GLclampf; green:GLclampf; blue:GLclampf; alpha:GLclampf);cdecl;
@@ -831,12 +1059,14 @@ uses
     glDrawTexfOES : procedure(x:GLfloat; y:GLfloat; z:GLfloat; width:GLfloat; height:GLfloat);cdecl;
 (* Const before type ignored *)
     glDrawTexfvOES : procedure(coords:PGLfloat);cdecl;
+  {$endif}
 
 implementation
 
   uses
-    sysutils, dynlibs, math;
+    sysutils{$ifndef ultibo}, dynlibs{$endif}, math{$ifdef ultibo}, Syscalls{$endif};
 
+  {$ifndef ultibo}
   var
     hlib : tlibhandle;
 
@@ -1169,14 +1399,18 @@ implementation
       pointer(glDrawTexfOES):=GetProcAddress(hlib,'glDrawTexfOES');
       pointer(glDrawTexfvOES):=GetProcAddress(hlib,'glDrawTexfvOES');
     end;
-
+  {$endif}
 
 initialization
+{$ifndef ultibo}
   SetExceptionMask([exInvalidOp, exDenormalized, exZeroDivide,exOverflow, exUnderflow, exPrecision]);
 {$ifdef darwin}
   Loadgles('/System/Library/Frameworks/OpenGLES.framework/OpenGLES');
 {$endif}
+{$endif}
 finalization
+{$ifndef ultibo}
   Freegles;
+{$endif}
 
 end.
