@@ -495,7 +495,14 @@ begin
         begin
          Add('SECTIONS');
          Add('{');
-         Add('    .text 0x' + IntToHex(embedded_controllers[current_settings.controllertype].srambase,8) + ':');
+         if not ImageBaseSetExplicity then
+          begin
+           Add('    .text 0x' + IntToHex(embedded_controllers[current_settings.controllertype].srambase,8) + ':');
+          end
+         else
+          begin
+           Add('    .text 0x' + IntToHex(imagebase,SizeOf(imagebase) * 2) + ':');
+          end;
          Add('    {');
          Add('    _text_start = .;');
          Add('    KEEP(*(.init, .init.*))');
@@ -615,7 +622,14 @@ begin
         begin
          Add('SECTIONS');
          Add('{');
-         Add('    .text 0x' + IntToHex(embedded_controllers[current_settings.controllertype].srambase,8) + ':');
+         if not ImageBaseSetExplicity then
+          begin
+           Add('    .text 0x' + IntToHex(embedded_controllers[current_settings.controllertype].srambase,8) + ':');
+          end
+         else
+          begin
+           Add('    .text 0x' + IntToHex(imagebase,SizeOf(imagebase) * 2) + ':');
+          end;
          Add('    {');
          Add('    _text_start = .;');
          Add('    KEEP(*(.init, .init.*))');

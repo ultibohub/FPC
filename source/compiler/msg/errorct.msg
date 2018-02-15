@@ -2295,6 +2295,7 @@ S*2Aas_assemblar utilitzant GNU AS
 3*2Topenbsd_OpenBSD
 3*2Tos2_OS/2 eComStation
 3*2Tsunos_SunOS/Solaris
+3*2Tultibo_Ultibo
 3*2Twatcom_Watcom compatible DOS extender
 3*2Twdosx_WDOSX DOS extender
 3*2Twin32_Windows 32 Bit
@@ -2305,6 +2306,7 @@ S*2Aas_assemblar utilitzant GNU AS
 6*2Tmacos_Macintosh m68k (no compatible)
 6*2Tpalmos_PalmOS
 A*2Tlinux_Linux
+A*2Tultibo_Ultibo
 P*2Tdarwin_Darwin i MacOS X en PowerPC
 P*2Tlinux_Linux en PowerPC
 P*2Tmacos_MacOS (clàssic) en PowerPC

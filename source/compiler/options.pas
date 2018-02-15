@@ -2121,7 +2121,7 @@ begin
                       end;
                     'B':
                       begin
-                        if target_info.system in systems_all_windows+systems_symbian then
+                        if target_info.system in systems_all_windows+systems_symbian+systems_ultibo then
                           begin
                             {  -WB200000 means set trefered base address
                               to $200000, but does not change relocsection boolean

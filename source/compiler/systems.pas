@@ -270,6 +270,9 @@ interface
                            system_jvm_java32,system_mipseb_embedded,system_mipsel_embedded,
                            system_arm_ultibo,system_i386_ultibo,system_x86_64_ultibo,system_aarch64_ultibo];
        
+       { all ultibo systems }
+       systems_ultibo = [system_arm_ultibo,system_i386_ultibo,system_x86_64_ultibo,system_aarch64_ultibo];
+       
        { all systems that allow section directive }
        systems_allow_section = systems_embedded;
 

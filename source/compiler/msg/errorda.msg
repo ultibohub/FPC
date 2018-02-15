@@ -3721,6 +3721,7 @@ option_help_pages=11025_[
 3*2Tnetwlibc_Novell Netware Module (libc)
 3*2Tos2_OS/2 / eComStation
 3*2Tsunos_SunOS/Solaris
+3*2Tultibo_Ultibo
 3*2Twatcom_Watcom kompatibel DOS extender
 3*2Twdosx_WDOSX DOS extender
 3*2Twin32_Windows 32 Bit
@@ -3752,6 +3753,7 @@ option_help_pages=11025_[
 6*2Tlinux_Linux-68k
 6*2Tmacos_Macintosh m68k (ikke understøttet)
 6*2Tpalmos_PalmOS
+A*2Tultibo_Ultibo
 P*1T<x>_Mål-operativsystem:
 P*2Tdarwin_Darwin og MacOS X på PowerPC
 P*2Tlinux_Linux på PowerPC

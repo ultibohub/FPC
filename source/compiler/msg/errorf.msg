@@ -1859,6 +1859,7 @@ option_help_pages=11025_[
 3*2Tnetwlibc_Novell Netware Module (libc)
 3*2TOS2_OS/2 / eComStation
 3*2TSUNOS_SunOS/Solaris
+3*2Tultibo_Ultibo
 3*2TWDOSX_WDOSX DOS extension
 3*2TWIN32_Windows 32 Bits
 6*1A<x>_output format
@@ -1888,6 +1889,7 @@ option_help_pages=11025_[
 6*2TATARI_Atari ST/STe/TT
 6*2TMACOS_Macintosh m68k
 6*2TLINUX_Linux-68k
+A*2Tultibo_Ultibo
 **1*_
 **1?_shows this help
 **1h_affiche cette aide sans attente

@@ -1663,110 +1663,109 @@ const msgtxt : array[0..000319,1..240] of char=(
   'A*2Wb_Create a bundle instead of a libra','ry (Darwin)'#010+
   '4*2Wb_Create a bundle instead of a library (Darwin)'#010+
   '3*2WB_Create a relocatable image (Windows, Symbian)'#010+
-  '3*2WB<x>_Set image base to <x> (Windows, Symbian)'#010+
+  '3*2WB<x>_Set image base to <x> (Windows, Symbian, Ultibo)'#010+
   '4*2WB_Create a relocatable image (Windows)'#010+
-  '4*2WB<x>_Set image base to <x> ','(Windows)'#010+
+  '4*2WB<x>_Set image base',' to <x> (Windows)'#010+
   'A*2WB_Create a relocatable image (Windows, Symbian)'#010+
-  'A*2WB<x>_Set image base to <x> (Windows, Symbian)'#010+
+  'A*2WB<x>_Set image base to <x> (Windows, Symbian, Ultibo)'#010+
   '3*2WC_Specify console type application (EMX, OS/2, Windows)'#010+
   '4*2WC_Specify console type application (Windows)'#010+
-  'A*2WC_Specify conso','le type application (Windows)'#010+
+  'A*2','WC_Specify console type application (Windows)'#010+
   'P*2WC_Specify console type application (Classic Mac OS)'#010+
   '3*2WD_Use DEFFILE to export functions of DLL or EXE (Windows)'#010+
   '4*2WD_Use DEFFILE to export functions of DLL or EXE (Windows)'#010+
-  'A*2WD_Use DEFFILE to export fu','nctions of DLL or EXE (Windows)'#010+
+  'A*2WD_Use DEFF','ILE to export functions of DLL or EXE (Windows)'#010+
   '3*2We_Use external resources (Darwin)'#010+
   '4*2We_Use external resources (Darwin)'#010+
   'a*2We_Use external resources (Darwin)'#010+
   'A*2We_Use external resources (Darwin)'#010+
   'P*2We_Use external resources (Darwin)'#010+
-  'p*2We_Use external',' resources (Darwin)'#010+
+  'p*','2We_Use external resources (Darwin)'#010+
   '3*2WF_Specify full-screen type application (EMX, OS/2)'#010+
   '3*2WG_Specify graphic type application (EMX, OS/2, Windows)'#010+
   '4*2WG_Specify graphic type application (Windows)'#010+
-  'A*2WG_Specify graphic type application (Windows)'#010+
-  'P*2WG_S','pecify graphic type application (Classic Mac OS)'#010+
+  'A*2WG_Specify graphic type application (','Windows)'#010+
+  'P*2WG_Specify graphic type application (Classic Mac OS)'#010+
   '3*2Wi_Use internal resources (Darwin)'#010+
   '4*2Wi_Use internal resources (Darwin)'#010+
   'a*2Wi_Use internal resources (Darwin)'#010+
   'A*2Wi_Use internal resources (Darwin)'#010+
-  'P*2Wi_Use internal resources (Darwin)'#010+
-  'p','*2Wi_Use internal resources (Darwin)'#010+
+  'P*2Wi_Use internal reso','urces (Darwin)'#010+
+  'p*2Wi_Use internal resources (Darwin)'#010+
   '3*2WI_Turn on/off the usage of import sections (Windows)'#010+
   '4*2WI_Turn on/off the usage of import sections (Windows)'#010+
   'A*2WI_Turn on/off the usage of import sections (Windows)'#010+
-  '8*2Wm<x>_Set memory model'#010+
-  '8*3WmT','iny_Tiny memory model'#010+
+  '8*2Wm<x>_Set mem','ory model'#010+
+  '8*3WmTiny_Tiny memory model'#010+
   '8*3WmSmall_Small memory model (default)'#010+
   '8*3WmMedium_Medium memory model'#010+
   '8*3WmCompact_Compact memory model'#010+
   '8*3WmLarge_Large memory model'#010+
   '8*3WmHuge_Huge memory model'#010+
-  '3*2WM<x>_Minimum Mac OS X deployment version: 10.4, 10','.5.1, ... (Dar'+
+  '3*2WM<x>_Minimum Mac OS X deployment v','ersion: 10.4, 10.5.1, ... (Dar'+
   'win)'#010+
   '4*2WM<x>_Minimum Mac OS X deployment version: 10.4, 10.5.1, ... (Darwi'+
   'n)'#010+
   'p*2WM<x>_Minimum Mac OS X deployment version: 10.4, 10.5.1, ... (Darwi'+
   'n)'#010+
-  'P*2WM<x>_Minimum Mac OS X deployment version: 10.4, 10.5.1, ... (Darwi'+
-  'n)'#010+
-  '3*','2WN_Do not generate relocation code, needed for debugging (Windows'+
-  ')'#010+
+  'P*2WM<x>_Minimum Mac OS X deployment version: 10.4, 10.5.1,',' ... (Dar'+
+  'win)'#010+
+  '3*2WN_Do not generate relocation code, needed for debugging (Windows)'#010+
   '4*2WN_Do not generate relocation code, needed for debugging (Windows)'#010+
   'A*2WN_Do not generate relocation code, needed for debugging (Windows)'#010+
-  'A*2Wp<x>_Specify the controller ','type; see fpc -i or fpc -iu for poss'+
+  'A*2Wp<x>_Specify',' the controller type; see fpc -i or fpc -iu for poss'+
   'ible values'#010+
   'm*2Wp<x>_Specify the controller type; see fpc -i or fpc -iu for possib'+
   'le values'#010+
   'V*2Wp<x>_Specify the controller type; see fpc -i or fpc -iu for possib'+
   'le values'#010+
-  '3*2WP<x>_Minimum iOS deployment ','version: 3.0, 5.0.1, ... (iphonesim)'+
+  '3*2WP<x>_Minimum',' iOS deployment version: 3.0, 5.0.1, ... (iphonesim)'+
   #010+
   '4*2WP<x>_Minimum iOS deployment version: 8.0, 8.0.2, ... (iphonesim)'#010+
   'a*2WP<x>_Minimum iOS deployment version: 7.0, 7.1.2, ... (Darwin)'#010+
-  'A*2WP<x>_Minimum iOS deployment version: 3.0, 5.0.1, ... (Darwin)'#010+
-  '3*','2WR_Generate relocation code (Windows)'#010+
+  'A*2WP<x>_Minimum iOS deployment version: 3.0, 5.0.1,',' ... (Darwin)'#010+
+  '3*2WR_Generate relocation code (Windows)'#010+
   '4*2WR_Generate relocation code (Windows)'#010+
   'A*2WR_Generate relocation code (Windows)'#010+
   '8*2Wt<x>_Set the target executable format'#010+
   '8*3Wtexe_Create a DOS .EXE file (default)'#010+
-  '8*3Wtcom_Create a DOS .COM file (re','quires tiny memory model)'#010+
+  '8*3Wtcom_Create a D','OS .COM file (requires tiny memory model)'#010+
   'P*2WT_Specify MPW tool type application (Classic Mac OS)'#010+
   '**2WX_Enable executable stack (Linux)'#010+
   '**1X_Executable options:'#010+
   '**2X9_Generate linkerscript for GNU Binutils ld older than version 2.1'+
-  '9.1 (Linux)'#010+
-  '**2Xc_Pass -','-shared/-dynamic to the linker (BeOS, Darwin, FreeBSD, L'+
-  'inux)'#010+
+  '9.1 (Lin','ux)'#010+
+  '**2Xc_Pass --shared/-dynamic to the linker (BeOS, Darwin, FreeBSD, Lin'+
+  'ux)'#010+
   '**2Xd_Do not search default library path (sometimes required for cross'+
   '-compiling when not using -XR)'#010+
   '**2Xe_Use external linker'#010+
-  '**2Xf_Substitute pthread library name for linking (','BSD)'#010+
+  '**2Xf_Substitute pthread library na','me for linking (BSD)'#010+
   '**2Xg_Create debuginfo in a separate file and add a debuglink section '+
   'to executable'#010+
   '**2XD_Try to link units dynamically      (defines FPC_LINK_DYNAMIC)'#010+
   '**2Xi_Use internal linker'#010+
-  '**2XLA_Define library substitutions for linking'#010+
-  '**2XLO_De','fine order of library linking'#010+
+  '**2XLA_Define library substitutions for l','inking'#010+
+  '**2XLO_Define order of library linking'#010+
   '**2XLD_Exclude default order of standard libraries'#010+
   '**2Xm_Generate link map'#010+
   '**2XM<x>_Set the name of the '#039'main'#039' program routine (default i'+
   's '#039'main'#039')'#010+
-  '**2Xn_Use target system native linker instead of GNU ld (Solari','s, AI'+
+  '**2Xn_Use target system native linker instead o','f GNU ld (Solaris, AI'+
   'X)'#010+
   'F*2Xp<x>_First search for the compiler binary in the directory <x>'#010+
   '**2XP<x>_Prepend the binutils names with the prefix <x>'#010+
   '**2Xr<x>_Set the linker'#039's rlink-path to <x> (needed for cross comp'+
-  'ile, see the ld manual for more information',') (BeOS, Linux)'#010+
+  'ile, see the ld manual for ','more information) (BeOS, Linux)'#010+
   '**2XR<x>_Prepend <x> to all linker search paths (BeOS, Darwin, FreeBSD'+
   ', Linux, Mac OS, Solaris)'#010+
   '**2Xs_Strip all symbols from executable'#010+
   '**2XS_Try to link units statically (default, defines FPC_LINK_STATIC)'#010+
-  '**2Xt_Link with st','atic libraries (-static is passed to linker)'#010+
+  '**','2Xt_Link with static libraries (-static is passed to linker)'#010+
   '**2Xv_Generate table for Virtual Entry calls'#010+
   '**2XV_Use VLink as external linker       (default on Amiga, MorphOS)'#010+
-  '**2XX_Try to smartlink units             (defines FPC_LINK_SMART)'#010+
+  '**2XX_Try to smartlink units             (defines FPC_LINK_SMART)',#010+
   '**1*_'#010+
-  '**1?_Show',' this help'#010+
+  '**1?_Show this help'#010+
   '**1h_Shows this help without waiting'
 );
