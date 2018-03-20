@@ -22,7 +22,7 @@ interface
 implementation
 
 uses
- GlobalConst,GlobalConfig,GlobalTypes,Platform,Mouse,Console,Types,Classes,SysUtils;
+ GlobalConst,GlobalConfig,GlobalTypes,Platform,Mouse,Framebuffer,Console,Types,Classes,SysUtils;
  
 {$i mouse.inc}
 
@@ -37,6 +37,8 @@ var
  WindowRect:TRect;
  WindowProperties:TWindowProperties;
 
+ FramebufferDevice:PFramebufferDevice = nil;
+ 
 procedure TranslateMouse(const Data:TMouseData;var MouseEvent:TMouseEvent;Poll:Boolean);
 var
  X:LongInt;
@@ -137,7 +139,19 @@ begin
    MouseY:=Y;
    
    {Update Mouse}
-   CursorSetState(True,MouseX,MouseY,False); //To Do //Change to new cursor/pointer functions when implemented in Console/Framebuffer 
+   if ConsoleDevice <> nil then
+    begin
+     if FramebufferDevice <> nil then
+      begin
+       {Framebuffer Cursor}
+       FramebufferDeviceUpdateCursor(FramebufferDevice,True,MouseX,MouseY,False);
+      end
+     else
+      begin
+       {Console Cursor}
+       ConsoleDeviceUpdateCursor(ConsoleDevice,True,MouseX,MouseY,False);
+      end;      
+    end;  
   end;
 end;
 
@@ -157,6 +171,7 @@ begin
  
  {Check Device}
  ConsoleDevice:=nil;
+ FramebufferDevice:=nil;
  if Length(CONSOLE_VIDEO_DEVICE) <> 0 then
   begin
    {Get By Name}
@@ -176,6 +191,17 @@ begin
  {Check Console Device}
  if ConsoleDevice <> nil then
   begin
+   {Check Type}
+   if ConsoleDevice^.Device.DeviceType = CONSOLE_TYPE_FRAMEBUFFER then
+    begin
+     {Check Framebuffer}
+     if FramebufferDeviceCheck(PFramebufferConsole(ConsoleDevice)^.Framebuffer) <> nil then
+      begin
+       {Get Framebuffer}
+       FramebufferDevice:=PFramebufferConsole(ConsoleDevice)^.Framebuffer;
+      end;
+    end;
+    
    {Get Properties}
    if ConsoleDeviceGetProperties(ConsoleDevice,@ConsoleProperties) = ERROR_SUCCESS then
     begin
@@ -202,11 +228,21 @@ begin
          Y2:=Y1 + (WindowProperties.Height * WindowProperties.FontHeight);
          WindowRect:=Rect(X1,Y1,X2,Y2);
 
-         {Set Default Cursor}
-         CursorSetDefault; //To Do //Change to new cursor/pointer functions when implemented in Console/Framebuffer
-         
          {Enable Cursor}
-         CursorSetState(True,MouseX,MouseY,False); //To Do //Change to new cursor/pointer functions when implemented in Console/Framebuffer
+         if FramebufferDevice <> nil then
+          begin
+           {Framebuffer Cursor}
+           FramebufferDeviceSetCursor(FramebufferDevice,0,0,0,0,nil,0);
+           
+           FramebufferDeviceUpdateCursor(FramebufferDevice,True,MouseX,MouseY,False);
+          end
+         else
+          begin
+           {Console Cursor}
+           ConsoleDeviceSetCursor(ConsoleDevice,0,0,nil);
+           
+           ConsoleDeviceUpdateCursor(ConsoleDevice,True,MouseX,MouseY,False);
+          end;
          
          {Show Mouse}
          ShowMouse;
@@ -223,7 +259,19 @@ begin
  HideMouse;
  
  {Disable Cursor}
- CursorSetState(False,MouseX,MouseY,False); //To Do //Change to new cursor/pointer functions when implemented in Console/Framebuffer
+ if ConsoleDevice <> nil then
+  begin
+   if FramebufferDevice <> nil then
+    begin
+     {Framebuffer Cursor}
+     FramebufferDeviceUpdateCursor(FramebufferDevice,False,MouseX,MouseY,False);
+    end
+   else
+    begin
+     {Console Cursor}
+     ConsoleDeviceUpdateCursor(ConsoleDevice,False,MouseX,MouseY,False);
+    end;    
+  end;
 end;
 
 

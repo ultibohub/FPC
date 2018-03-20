@@ -159,6 +159,11 @@ begin
      CursorY:=ConsoleWindowGetY(WindowHandle);
      CursorLines:=0;
      
+     {Set Cursor}
+     ConsoleWindowCursorOff(WindowHandle); 
+     ConsoleWindowCursorBar(WindowHandle);
+     ConsoleWindowCursorBlink(WindowHandle,True);
+     
      {Create Buffer}
      SetLength(ConsoleBuffer,ScreenWidth * ScreenHeight);
      
@@ -275,7 +280,7 @@ begin
        ConsoleBuffer[BufCounter].Ch:=Char(WordRec(VideoBuf^[BufCounter]).One);
        ConsoleBuffer[BufCounter].Forecolor:=ConsoleColors[WordRec(VideoBuf^[BufCounter]).Two and $F];
        ConsoleBuffer[BufCounter].Backcolor:=ConsoleColors[(WordRec(VideoBuf^[BufCounter]).Two and $F0) shr 4];
-       
+        
        Inc(BufCounter);
       end;
     end;
@@ -360,7 +365,7 @@ end;
 
 procedure SysSetCursorPos(NewCursorX, NewCursorY: Word);
 begin
- if ConsoleWindowSetXY(WindowHandle,NewCursorX,NewCursorY) = ERROR_SUCCESS then
+ if ConsoleWindowSetXY(WindowHandle,NewCursorX + 1,NewCursorY + 1) = ERROR_SUCCESS then
   begin
    CursorX:=NewCursorX;
    CursorY:=NewCursorY;
@@ -370,19 +375,42 @@ end;
 
 function SysGetCursorType: Word;
 begin
- //To Do //Add when cursor support implemented in Console
+ if ConsoleWindowGetCursorState(WindowHandle) = CURSOR_STATE_OFF then
+  begin
+   SysGetCursorType:=crHidden
+  end
+ else 
+  begin
+   case ConsoleWindowGetCursorShape(WindowHandle) of
+    CURSOR_SHAPE_LINE:SysGetCursorType:=crHalfBlock;
+    CURSOR_SHAPE_BAR:SysGetCursorType:=crUnderline;
+    CURSOR_SHAPE_BLOCK:SysGetCursorType:=crBlock;
+   end;
+  end;
 end;
 
 
 procedure SysSetCursorType(NewType: Word);
 begin
- //To Do //Add when cursor support implemented in Console
+ if NewType = crHidden then
+  begin
+   ConsoleWindowSetCursorState(WindowHandle,CURSOR_STATE_OFF);
+  end
+ else
+  begin
+   case NewType of
+    crHalfBlock:ConsoleWindowSetCursorShape(WindowHandle,CURSOR_SHAPE_LINE);
+    crUnderline:ConsoleWindowSetCursorShape(WindowHandle,CURSOR_SHAPE_BAR);
+    crBlock:ConsoleWindowSetCursorShape(WindowHandle,CURSOR_SHAPE_BLOCK);
+   end;
+   ConsoleWindowSetCursorState(WindowHandle,CURSOR_STATE_ON);
+  end;  
 end;
 
 
 function SysGetCapabilities: Word;
 begin
- SysGetCapabilities:=cpColor; // or cpChangeCursor; //To Do //Add when cursor support implemented in Console
+ SysGetCapabilities:=cpColor or cpChangeCursor;
 end;
 
 
