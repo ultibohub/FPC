@@ -215,7 +215,8 @@ type
 
    EArgumentException = class(Exception);
    EArgumentOutOfRangeException = class(EArgumentException);
-
+   EArgumentNilException = class(EArgumentException);
+   
    ENoConstructException = class(Exception);
 
    { Exception handling routines }
