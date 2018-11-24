@@ -32,7 +32,7 @@ property CPUCount: LongWord read GetCPUCount;
 type
   PEventState = pointer;
   PRTLEvent   = type pointer;   // Windows=thandle, other=pointer to record.
-  TThreadFunc = function(parameter : pointer) : ptrint;
+  TThreadFunc = function(parameter : pointer) : ptrint;{$IFDEF ULTIBO}{$IFDEF i386} stdcall;{$ENDIF}{$ENDIF}
   trtlmethod  = procedure of object;
 
   // Function prototypes for TThreadManager Record.
