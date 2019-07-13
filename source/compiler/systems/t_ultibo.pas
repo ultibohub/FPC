@@ -2,7 +2,7 @@
     This unit implements support import,export,link routines
     for the Ultibo target
 
-    Copyright (c) 2015 by Garry Wood
+    Copyright (c) 2019 by Garry Wood
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -225,7 +225,9 @@ begin
      ct_rpib,
      ct_rpizero,
      ct_rpi2b,
+     ct_rpi3a,
      ct_rpi3b,
+     ct_rpi4b,
      ct_qemuvpb:
       begin
        prtobj:=embedded_controllers[current_settings.controllertype].controllerunitstr;
@@ -261,7 +263,9 @@ begin
   if not current_module.islibrary then
    begin
     case current_settings.controllertype of
+     ct_rpi3a,
      ct_rpi3b,
+     ct_rpi4b,
      ct_qemuvpb:
       begin
        prtobj:=embedded_controllers[current_settings.controllertype].controllerunitstr;
@@ -455,9 +459,11 @@ begin
                 Add('ENTRY(_START)');
               end;
           end;
-        { Raspberry Pi2 / Raspberry Pi3}
+        { Raspberry Pi2 / Raspberry Pi3 / Raspberry Pi4}
         ct_rpi2b,
-        ct_rpi3b:
+        ct_rpi3a,
+        ct_rpi3b,
+        ct_rpi4b:
           begin
            with embedded_controllers[current_settings.controllertype] do
             with linkres do
@@ -488,7 +494,9 @@ begin
      ct_rpib,
      ct_rpizero,
      ct_rpi2b,
+     ct_rpi3a,
      ct_rpi3b,
+     ct_rpi4b,
      ct_qemuvpb:
       begin
        with linkres do
@@ -587,8 +595,10 @@ begin
         ct_none:
              begin
              end;
-        { Raspberry Pi3}
-        ct_rpi3b:
+        { Raspberry Pi3 / Raspberry Pi4}
+        ct_rpi3a,
+        ct_rpi3b,
+        ct_rpi4b:
           begin
            with embedded_controllers[current_settings.controllertype] do
             with linkres do
@@ -615,7 +625,9 @@ begin
   if not current_module.islibrary then
    begin
     case current_settings.controllertype of
+     ct_rpi3a,
      ct_rpi3b,
+     ct_rpi4b,
      ct_qemuvpb:
       begin
        with linkres do
@@ -884,6 +896,7 @@ begin
           end;
        end;
       ct_rpi2b,
+      ct_rpi3a,
       ct_rpi3b:begin
         { Create kernel image }
         success:=DoExec(FindUtil(utilsprefix+'objcopy'),'-O binary '+
@@ -893,6 +906,17 @@ begin
         if success then
           begin
            success:=AddKernelTrailer(ExtractFilePath(current_module.exefilename) + 'kernel7.img');
+          end;
+       end;
+      ct_rpi4b:begin
+        { Create kernel image }
+        success:=DoExec(FindUtil(utilsprefix+'objcopy'),'-O binary '+
+          ChangeFileExt(current_module.exefilename,'.elf')+' kernel7l.img',true,false);
+          
+        {Add kernel trailer}
+        if success then
+          begin
+           success:=AddKernelTrailer(ExtractFilePath(current_module.exefilename) + 'kernel7l.img');
           end;
        end;
       ct_qemuvpb:begin
@@ -907,7 +931,9 @@ begin
      {$endif i386}
      {$ifdef AARCH64}
      case current_settings.controllertype of
-      ct_rpi3b:begin
+      ct_rpi3a,
+      ct_rpi3b,
+      ct_rpi4b:begin
         { Create kernel image }
         success:=DoExec(FindUtil(utilsprefix+'objcopy'),'-O binary '+
           ChangeFileExt(current_module.exefilename,'.elf')+' kernel8.img',true,false);
