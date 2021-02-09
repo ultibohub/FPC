@@ -484,6 +484,7 @@ Type
 
       { Raspberry Pi4 (32 bit mode)}
       ct_rpi4b,
+      ct_rpi400,
       
       { QEMU VersatilePB}
       ct_qemuvpb
@@ -1005,6 +1006,7 @@ Const
 
       { Raspberry Pi4}
       (controllertypestr:'RPI4B';	controllerunitstr:'BOOTRPI4';	cputype:cpu_armv7a;  fputype:fpu_vfpv3;   flashbase:$00000000;	flashsize:$00000000;	srambase:$00008000;	sramsize:$40000000),
+      (controllertypestr:'RPI400';	controllerunitstr:'BOOTRPI4';	cputype:cpu_armv7a;  fputype:fpu_vfpv3;   flashbase:$00000000;	flashsize:$00000000;	srambase:$00008000;	sramsize:$40000000),
 
       { QEMU VersatilePB}
       (controllertypestr:'QEMUVPB';	controllerunitstr:'BOOTQEMUVPB';	cputype:cpu_armv7a;  fputype:fpu_vfpv3;   flashbase:$00000000;	flashsize:$00000000;	srambase:$00010000;	sramsize:$10000000)

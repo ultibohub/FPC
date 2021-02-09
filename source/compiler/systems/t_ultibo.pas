@@ -228,6 +228,7 @@ begin
      ct_rpi3a,
      ct_rpi3b,
      ct_rpi4b,
+     ct_rpi400,
      ct_qemuvpb:
       begin
        prtobj:=embedded_controllers[current_settings.controllertype].controllerunitstr;
@@ -266,6 +267,7 @@ begin
      ct_rpi3a,
      ct_rpi3b,
      ct_rpi4b,
+     ct_rpi400,
      ct_qemuvpb:
       begin
        prtobj:=embedded_controllers[current_settings.controllertype].controllerunitstr;
@@ -463,7 +465,8 @@ begin
         ct_rpi2b,
         ct_rpi3a,
         ct_rpi3b,
-        ct_rpi4b:
+        ct_rpi4b,
+        ct_rpi400:
           begin
            with embedded_controllers[current_settings.controllertype] do
             with linkres do
@@ -497,6 +500,7 @@ begin
      ct_rpi3a,
      ct_rpi3b,
      ct_rpi4b,
+     ct_rpi400,
      ct_qemuvpb:
       begin
        with linkres do
@@ -598,7 +602,8 @@ begin
         { Raspberry Pi3 / Raspberry Pi4}
         ct_rpi3a,
         ct_rpi3b,
-        ct_rpi4b:
+        ct_rpi4b,
+        ct_rpi400:
           begin
            with embedded_controllers[current_settings.controllertype] do
             with linkres do
@@ -628,6 +633,7 @@ begin
      ct_rpi3a,
      ct_rpi3b,
      ct_rpi4b,
+     ct_rpi400,
      ct_qemuvpb:
       begin
        with linkres do
@@ -908,7 +914,8 @@ begin
            success:=AddKernelTrailer(ExtractFilePath(current_module.exefilename) + 'kernel7.img');
           end;
        end;
-      ct_rpi4b:begin
+      ct_rpi4b,
+      ct_rpi400:begin
         { Create kernel image }
         success:=DoExec(FindUtil(utilsprefix+'objcopy'),'-O binary '+
           ChangeFileExt(current_module.exefilename,'.elf')+' kernel7l.img',true,false);
@@ -933,7 +940,8 @@ begin
      case current_settings.controllertype of
       ct_rpi3a,
       ct_rpi3b,
-      ct_rpi4b:begin
+      ct_rpi4b,
+      ct_rpi400:begin
         { Create kernel image }
         success:=DoExec(FindUtil(utilsprefix+'objcopy'),'-O binary '+
           ChangeFileExt(current_module.exefilename,'.elf')+' kernel8.img',true,false);
