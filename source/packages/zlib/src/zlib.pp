@@ -15,7 +15,7 @@ interface
 {$packrecords c}
 
 uses
-  ctypes;
+  ctypes{$ifdef ultibo},Syscalls{$endif};
 
 const
 {$ifdef netware}  {zlib.nlm comes with netware6}
@@ -67,8 +67,13 @@ const
 *)
 
 const
+  {$ifdef ultibo}
+  ZLIB_VERSION = '1.2.11';
+  ZLIB_VERNUM = $1211;
+  {$else}
   ZLIB_VERSION = '1.2.3';
   ZLIB_VERNUM = $1230;
+  {$endif}
 
 type
   uInt = cuint;

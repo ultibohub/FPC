@@ -25,12 +25,22 @@ unit fftw_s;
 {$MACRO on}
 {$INLINE on}
 
+{$IFDEF ULTIBO}
+uses 
+  Syscalls;
+{$ENDIF}
+
 {$IFDEF Unix}
   const
     fftwlib = 'fftw3f';
 {$ELSE}
-  const
-    fftwlib = 'libfftw3f';
+  {$IFDEF ULTIBO}
+    const
+      fftwlib = 'fftw3f';
+  {$ELSE}
+    const
+      fftwlib = 'libfftw3f';
+  {$ENDIF}
 {$ENDIF}
 
 type    complex_single=record

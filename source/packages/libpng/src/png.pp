@@ -14,7 +14,8 @@ interface
 
 uses
  ctypes,
- zlib;
+ zlib
+ {$ifdef ultibo},Syscalls{$endif};
 
 Const
 {$ifdef windows}
@@ -22,10 +23,17 @@ Const
   { matching lib version for libpng13.dll, needed for initialization }
   PNG_LIBPNG_VER_STRING='1.2.12';
 {$else windows}
-  LibPng = 'png'; // Library name
-  { matching lib version for libpng, needed for initialization }
-  PNG_LIBPNG_VER_STRING='1.2.12';
-  {$linklib png}
+  {$ifdef ultibo}
+    LibPng = 'png'; // Library name
+    { matching lib version for libpng, needed for initialization }
+    PNG_LIBPNG_VER_STRING='1.6.34';
+    {$linklib png}
+  {$else ultibo}
+    LibPng = 'png'; // Library name
+    { matching lib version for libpng, needed for initialization }
+    PNG_LIBPNG_VER_STRING='1.2.12';
+    {$linklib png}
+  {$endif ultibo}
 {$endif windows}
 
 type

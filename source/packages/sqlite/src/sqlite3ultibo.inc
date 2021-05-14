@@ -885,7 +885,7 @@ function sqlite3_ultibo_vfs_Randomness(vfs: psqlite3_vfs; nByte: cint; zOut: pan
  
 var
  e:TEntropyGatherer;
- x:TSystemTime;
+ x:SYSTEMTIME;
  pid:DWORD;
  cnt:ULONGLONG;
  id:TGUID;
@@ -914,7 +914,7 @@ begin
  
  {Get System Time}
  GetLocalTime(x);
- xorMemory(@e,PAnsiChar(@x),SizeOf(TSystemTime));
+ xorMemory(@e,PAnsiChar(@x),SizeOf(SYSTEMTIME));
  
  {Get Current Thread}
  pid:=ThreadGetCurrent;

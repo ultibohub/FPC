@@ -21,7 +21,7 @@ begin
     P.Version:='3.1.1';
     P.Dependencies.Add('zlib');
     P.SourcePath.Add('src');
-    P.OSes := AllUnixOSes-[qnx]+[win32,os2,emx];
+    P.OSes := AllUnixOSes-[qnx]+[win32,os2,emx,ultibo];
 
     T:=P.Targets.AddUnit('png.pp');
 {$ifndef ALLPACKAGES}
