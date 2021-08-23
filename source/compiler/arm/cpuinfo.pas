@@ -487,7 +487,20 @@ Type
       ct_rpi400,
       
       { QEMU VersatilePB}
-      ct_qemuvpb
+      ct_qemuvpb,
+      
+      { QEMU Raspberry Pi A}
+      ct_qemurpia,
+      
+      { QEMU Raspberry Pi Zero}
+      ct_qemurpizero,
+      
+      { QEMU Raspberry Pi2}
+      ct_qemurpi2b,
+      
+      { QEMU Raspberry Pi3 (32 bit mode)}
+      ct_qemurpi3a,
+      ct_qemurpi3b
       
      );
 
@@ -1009,7 +1022,20 @@ Const
       (controllertypestr:'RPI400';	controllerunitstr:'BOOTRPI4';	cputype:cpu_armv7a;  fputype:fpu_vfpv3;   flashbase:$00000000;	flashsize:$00000000;	srambase:$00008000;	sramsize:$40000000),
 
       { QEMU VersatilePB}
-      (controllertypestr:'QEMUVPB';	controllerunitstr:'BOOTQEMUVPB';	cputype:cpu_armv7a;  fputype:fpu_vfpv3;   flashbase:$00000000;	flashsize:$00000000;	srambase:$00010000;	sramsize:$10000000)
+      (controllertypestr:'QEMUVPB';	controllerunitstr:'BOOTQEMUVPB';	cputype:cpu_armv7a;  fputype:fpu_vfpv3;   flashbase:$00000000;	flashsize:$00000000;	srambase:$00010000;	sramsize:$10000000),
+
+      { QEMU QEMU Raspberry Pi A}
+      (controllertypestr:'QEMURPIA';	controllerunitstr:'BOOTRPI';	cputype:cpu_armv6;  fputype:fpu_vfpv2;   flashbase:$00000000;	flashsize:$00000000;	srambase:$00010000;	sramsize:$20000000),
+
+      { QEMU Raspberry Pi Zero}
+      (controllertypestr:'QEMURPIZERO';	controllerunitstr:'BOOTRPI';	cputype:cpu_armv6;  fputype:fpu_vfpv2;   flashbase:$00000000;	flashsize:$00000000;	srambase:$00010000;	sramsize:$20000000),
+      
+      { QEMU Raspberry Pi2}
+      (controllertypestr:'QEMURPI2B';	controllerunitstr:'BOOTRPI2';	cputype:cpu_armv7a;  fputype:fpu_vfpv3;   flashbase:$00000000;	flashsize:$00000000;	srambase:$00010000;	sramsize:$40000000),
+      
+      { QEMU Raspberry Pi3}
+      (controllertypestr:'QEMURPI3A';	controllerunitstr:'BOOTRPI3';	cputype:cpu_armv7a;  fputype:fpu_vfpv3;   flashbase:$00000000;	flashsize:$00000000;	srambase:$00010000;	sramsize:$20000000),
+      (controllertypestr:'QEMURPI3B';	controllerunitstr:'BOOTRPI3';	cputype:cpu_armv7a;  fputype:fpu_vfpv3;   flashbase:$00000000;	flashsize:$00000000;	srambase:$00010000;	sramsize:$40000000)
       
     );
 

@@ -56,7 +56,12 @@ Type
       ct_rpi400,
       
       { QEMU VersatilePB (64 bit mode)}
-      ct_qemuvpb
+      ct_qemuvpb,
+      
+      { QEMU Raspberry Pi3 (64 bit mode)}
+      ct_qemurpi3a,
+      ct_qemurpi3b
+      
      );
 
    tcontrollerdatatype = record
@@ -94,7 +99,11 @@ Const
       (controllertypestr:'RPI400'; controllerunitstr:'BOOTRPI4'; cputype:cpu_armv8; fputype:fpu_vfp; flashbase:$00000000; flashsize:$00000000; srambase:$00080000; sramsize:$40000000),
 
       { QEMU VersatilePB}
-      (controllertypestr:'QEMUVPB'; controllerunitstr:'BOOTQEMUVPB'; cputype:cpu_armv8; fputype:fpu_vfp; flashbase:$00000000; flashsize:$00000000; srambase:$00010000; sramsize:$10000000)
+      (controllertypestr:'QEMUVPB'; controllerunitstr:'BOOTQEMUVPB'; cputype:cpu_armv8; fputype:fpu_vfp; flashbase:$00000000; flashsize:$00000000; srambase:$00080000; sramsize:$10000000),
+
+      { QEMU Raspberry Pi3}
+      (controllertypestr:'QEMURPI3A'; controllerunitstr:'BOOTRPI3'; cputype:cpu_armv8; fputype:fpu_vfp; flashbase:$00000000; flashsize:$00000000; srambase:$00080000; sramsize:$20000000),
+      (controllertypestr:'QEMURPI3B'; controllerunitstr:'BOOTRPI3'; cputype:cpu_armv8; fputype:fpu_vfp; flashbase:$00000000; flashsize:$00000000; srambase:$00080000; sramsize:$40000000)
       
     );
    {$POP}

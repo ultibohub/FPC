@@ -2,7 +2,7 @@
     This unit implements support import,export,link routines
     for the Ultibo target
 
-    Copyright (c) 2019 by Garry Wood
+    Copyright (c) 2021 by Garry Wood
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -229,7 +229,12 @@ begin
      ct_rpi3b,
      ct_rpi4b,
      ct_rpi400,
-     ct_qemuvpb:
+     ct_qemuvpb,
+     ct_qemurpia,
+     ct_qemurpizero,
+     ct_qemurpi2b,
+     ct_qemurpi3a,
+     ct_qemurpi3b:
       begin
        prtobj:=embedded_controllers[current_settings.controllertype].controllerunitstr;
        cprtobj:=embedded_controllers[current_settings.controllertype].controllerunitstr;
@@ -268,7 +273,9 @@ begin
      ct_rpi3b,
      ct_rpi4b,
      ct_rpi400,
-     ct_qemuvpb:
+     ct_qemuvpb,
+     ct_qemurpi3a,
+     ct_qemurpi3b:
       begin
        prtobj:=embedded_controllers[current_settings.controllertype].controllerunitstr;
        cprtobj:=embedded_controllers[current_settings.controllertype].controllerunitstr;
@@ -475,7 +482,12 @@ begin
               end;
           end;
         { QEMU VersatilePB}
-        ct_qemuvpb:
+        ct_qemuvpb,
+        ct_qemurpia,
+        ct_qemurpizero,
+        ct_qemurpi2b,
+        ct_qemurpi3a,
+        ct_qemurpi3b:
           begin
            with embedded_controllers[current_settings.controllertype] do
             with linkres do
@@ -501,7 +513,12 @@ begin
      ct_rpi3b,
      ct_rpi4b,
      ct_rpi400,
-     ct_qemuvpb:
+     ct_qemuvpb,
+     ct_qemurpia,
+     ct_qemurpizero,
+     ct_qemurpi2b,
+     ct_qemurpi3a,
+     ct_qemurpi3b:
       begin
        with linkres do
         begin
@@ -612,7 +629,9 @@ begin
               end;
           end;
         { QEMU VersatilePB}
-        ct_qemuvpb:
+        ct_qemuvpb,
+        ct_qemurpi3a,
+        ct_qemurpi3b:
           begin
            with embedded_controllers[current_settings.controllertype] do
             with linkres do
@@ -634,7 +653,9 @@ begin
      ct_rpi3b,
      ct_rpi4b,
      ct_rpi400,
-     ct_qemuvpb:
+     ct_qemuvpb,
+     ct_qemurpi3a,
+     ct_qemurpi3b:
       begin
        with linkres do
         begin
@@ -931,6 +952,19 @@ begin
         success:=DoExec(FindUtil(utilsprefix+'objcopy'),'-O binary '+
           ChangeFileExt(current_module.exefilename,'.elf')+' kernel.bin',true,false);
        end;
+      ct_qemurpia,
+      ct_qemurpizero:begin
+        { Create kernel image (Note: In 32-bit mode a QEMU image will NOT boot on a real Raspbery Pi and vice versa)}
+        success:=DoExec(FindUtil(utilsprefix+'objcopy'),'-O binary '+
+          ChangeFileExt(current_module.exefilename,'.elf')+' kernel.qimg',true,false);
+       end;
+      ct_qemurpi2b,
+      ct_qemurpi3a,
+      ct_qemurpi3b:begin
+        { Create kernel image (Note: In 32-bit mode a QEMU image will NOT boot on a real Raspbery Pi and vice versa)}
+        success:=DoExec(FindUtil(utilsprefix+'objcopy'),'-O binary '+
+          ChangeFileExt(current_module.exefilename,'.elf')+' kernel7.qimg',true,false);
+       end;
      end;  
      {$endif ARM}
      {$ifdef i386}
@@ -956,6 +990,14 @@ begin
         { Create kernel image }
         success:=DoExec(FindUtil(utilsprefix+'objcopy'),'-O binary '+
           ChangeFileExt(current_module.exefilename,'.elf')+' kernel64.bin',true,false);
+       end;
+      ct_qemurpi3a,
+      ct_qemurpi3b:begin
+        { Create kernel image (Note: In 64-bit mode a QEMU image should boot on a real Raspbery Pi and vice versa)}
+        success:=DoExec(FindUtil(utilsprefix+'objcopy'),'-O binary '+
+          ChangeFileExt(current_module.exefilename,'.elf')+' kernel8.img',true,false);
+        
+        {Note: Kernel trailer is no longer honoured by latest Raspberry Pi firmware}
        end;
      end;  
      {$endif AARCH64}
