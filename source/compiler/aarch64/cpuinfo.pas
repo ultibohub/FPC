@@ -55,6 +55,9 @@ Type
       ct_rpi4b,
       ct_rpi400,
       
+      { Raspberry Pi Zero 2 (64 bit mode)}
+      ct_rpizero2w,
+      
       { QEMU VersatilePB (64 bit mode)}
       ct_qemuvpb,
       
@@ -97,6 +100,9 @@ Const
       { Raspberry Pi4}
       (controllertypestr:'RPI4B'; controllerunitstr:'BOOTRPI4'; cputype:cpu_armv8; fputype:fpu_vfp; flashbase:$00000000; flashsize:$00000000; srambase:$00080000; sramsize:$40000000),
       (controllertypestr:'RPI400'; controllerunitstr:'BOOTRPI4'; cputype:cpu_armv8; fputype:fpu_vfp; flashbase:$00000000; flashsize:$00000000; srambase:$00080000; sramsize:$40000000),
+
+      { Raspberry Pi Zero 2}
+      (controllertypestr:'RPIZERO2W'; controllerunitstr:'BOOTRPI3'; cputype:cpu_armv8; fputype:fpu_vfp; flashbase:$00000000; flashsize:$00000000; srambase:$00080000; sramsize:$20000000),
 
       { QEMU VersatilePB}
       (controllertypestr:'QEMUVPB'; controllerunitstr:'BOOTQEMUVPB'; cputype:cpu_armv8; fputype:fpu_vfp; flashbase:$00000000; flashsize:$00000000; srambase:$00080000; sramsize:$10000000),

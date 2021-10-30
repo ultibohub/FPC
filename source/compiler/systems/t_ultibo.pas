@@ -229,6 +229,7 @@ begin
      ct_rpi3b,
      ct_rpi4b,
      ct_rpi400,
+     ct_rpizero2w,
      ct_qemuvpb,
      ct_qemurpia,
      ct_qemurpizero,
@@ -273,6 +274,7 @@ begin
      ct_rpi3b,
      ct_rpi4b,
      ct_rpi400,
+     ct_rpizero2w,
      ct_qemuvpb,
      ct_qemurpi3a,
      ct_qemurpi3b:
@@ -468,12 +470,13 @@ begin
                 Add('ENTRY(_START)');
               end;
           end;
-        { Raspberry Pi2 / Raspberry Pi3 / Raspberry Pi4}
+        { Raspberry Pi2 / Raspberry Pi3 / Raspberry Pi4 / Raspberry Pi Zero 2}
         ct_rpi2b,
         ct_rpi3a,
         ct_rpi3b,
         ct_rpi4b,
-        ct_rpi400:
+        ct_rpi400,
+        ct_rpizero2w:
           begin
            with embedded_controllers[current_settings.controllertype] do
             with linkres do
@@ -513,6 +516,7 @@ begin
      ct_rpi3b,
      ct_rpi4b,
      ct_rpi400,
+     ct_rpizero2w,
      ct_qemuvpb,
      ct_qemurpia,
      ct_qemurpizero,
@@ -616,11 +620,12 @@ begin
         ct_none:
              begin
              end;
-        { Raspberry Pi3 / Raspberry Pi4}
+        { Raspberry Pi3 / Raspberry Pi4 / Raspberry Pi Zero 2}
         ct_rpi3a,
         ct_rpi3b,
         ct_rpi4b,
-        ct_rpi400:
+        ct_rpi400,
+        ct_rpizero2w:
           begin
            with embedded_controllers[current_settings.controllertype] do
             with linkres do
@@ -653,6 +658,7 @@ begin
      ct_rpi3b,
      ct_rpi4b,
      ct_rpi400,
+     ct_rpizero2w,
      ct_qemuvpb,
      ct_qemurpi3a,
      ct_qemurpi3b:
@@ -924,7 +930,8 @@ begin
        end;
       ct_rpi2b,
       ct_rpi3a,
-      ct_rpi3b:begin
+      ct_rpi3b,
+      ct_rpizero2w:begin
         { Create kernel image }
         success:=DoExec(FindUtil(utilsprefix+'objcopy'),'-O binary '+
           ChangeFileExt(current_module.exefilename,'.elf')+' kernel7.img',true,false);
@@ -975,7 +982,8 @@ begin
       ct_rpi3a,
       ct_rpi3b,
       ct_rpi4b,
-      ct_rpi400:begin
+      ct_rpi400,
+      ct_rpizero2w:begin
         { Create kernel image }
         success:=DoExec(FindUtil(utilsprefix+'objcopy'),'-O binary '+
           ChangeFileExt(current_module.exefilename,'.elf')+' kernel8.img',true,false);
